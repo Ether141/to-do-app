@@ -8,6 +8,14 @@
 	</PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Resources\Images\Icons\close-light.png" />
+      <None Remove="Resources\Images\Icons\close.png" />
+      <None Remove="Resources\Images\Icons\maximize-light.png" />
+      <None Remove="Resources\Images\Icons\maximize.png" />
+      <None Remove="Resources\Images\Icons\minimize-light.png" />
+      <None Remove="Resources\Images\Icons\minimize.png" />
+      <None Remove="Resources\Images\Icons\windowed-light.png" />
+      <None Remove="Resources\Images\Icons\windowed.png" />
       <None Remove="Resources\Images\ToDoAppLogo\favicon.ico" />
       <None Remove="Resources\Images\ToDoAppLogo\ToDoAppLogo.png" />
     </ItemGroup>
@@ -19,6 +27,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Resources\Images\Icons\close-light.png" />
+	  <Resource Include="Resources\Images\Icons\close.png" />
+	  <Resource Include="Resources\Images\Icons\maximize-light.png" />
+	  <Resource Include="Resources\Images\Icons\maximize.png" />
+	  <Resource Include="Resources\Images\Icons\minimize-light.png" />
+	  <Resource Include="Resources\Images\Icons\minimize.png" />
+	  <Resource Include="Resources\Images\Icons\windowed-light.png" />
+	  <Resource Include="Resources\Images\Icons\windowed.png" />
 	  <Resource Include="Resources\Images\ToDoAppLogo\favicon.ico" />
 	  <Resource Include="Resources\Images\ToDoAppLogo\ToDoAppLogo.png" />
 	</ItemGroup>

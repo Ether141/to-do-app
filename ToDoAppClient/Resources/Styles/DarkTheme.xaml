@@ -6,5 +6,11 @@
 
     <SolidColorBrush x:Key="backgroundBrush">#ff1c1c1c</SolidColorBrush>
     <SolidColorBrush x:Key="secondBackgroundBrush">#ff2e2e2e</SolidColorBrush>
+    <SolidColorBrush x:Key="thirdBackgroundBrush">#ff161616</SolidColorBrush>
+
+    <BitmapImage x:Key="closeIcon" UriSource="/Resources/Images/Icons/close-light.png"/>
+    <BitmapImage x:Key="maximizeIcon" UriSource="/Resources/Images/Icons/maximize-light.png"/>
+    <BitmapImage x:Key="minimizeIcon" UriSource="/Resources/Images/Icons/minimize-light.png"/>
+    <BitmapImage x:Key="windowedIcon" UriSource="/Resources/Images/Icons/windowed-light.png"/>
 
 </ResourceDictionary>

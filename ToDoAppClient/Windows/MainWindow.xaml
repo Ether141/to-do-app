@@ -4,22 +4,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoAppClient"
+        xmlns:customControls="clr-namespace:ToDoAppClient.Controls"
         xmlns:str="clr-namespace:ToDoAppClient.Resources.Strings"
         mc:Ignorable="d"
-        Title="{x:Static str:Resource.appName}" MinWidth="400" Height="400" Width="1366" MinHeight="768" 
+        Title="{x:Static str:Resource.appName}" MinWidth="1280" Height="720" Width="1280" MinHeight="720" 
         Foreground="{DynamicResource foregroundBrush}" Background="{DynamicResource backgroundBrush}"
         Loaded="WindowLoaded"
         Name="ToDoApp"
-        WindowStyle="None" Icon="/Resources/Images/ToDoAppLogo/favicon.ico" WindowStartupLocation="CenterScreen">
+        SizeChanged="OnSizeChanged"
+        BorderThickness="1"
+        BorderBrush="{DynamicResource thirdBackgroundBrush}"
+        WindowStyle="SingleBorderWindow" 
+        ResizeMode="CanResize"
+        Icon="/Resources/Images/ToDoAppLogo/favicon.ico" 
+        WindowStartupLocation="CenterScreen">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="28"/>
+        <WindowChrome CaptionHeight="28" GlassFrameThickness="0" CornerRadius="0" UseAeroCaptionButtons="False" ResizeBorderThickness="8"/>
     </WindowChrome.WindowChrome>
 
     <Grid>
-        <DockPanel x:Name="titlebar" Height="28" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="#0f0f0f">
-            <Image Source="/Resources/Images/ToDoAppLogo/favicon.ico" Width="17" Height="17" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Margin="5 0 2 0"/>
-            <Label x:Name="titlebarLabel" Content="{x:Static str:Resource.appName}"/>
+        <DockPanel x:Name="titlebar" Height="28" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{DynamicResource thirdBackgroundBrush}">
+            <Grid>
+                <DockPanel>
+                    <Image Source="/Resources/Images/ToDoAppLogo/favicon.ico" Width="17" Height="17" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Margin="5 0 2 0"/>
+                    <Label x:Name="titlebarLabel" Content="{x:Static str:Resource.appName}"/>
+                </DockPanel>
+
+                <DockPanel HorizontalAlignment="Right">
+                    <customControls:TitlebarNavButton ButtonType="Minimize" HorizontalAlignment="Right" Click="MinimizeButtonClick"/>
+                    <customControls:TitlebarNavButton x:Name="windowedButton" ButtonType="Maximize" HorizontalAlignment="Right" Click="WindowedButtonClick"/>
+                    <customControls:TitlebarNavButton ButtonType="Close" HorizontalAlignment="Right" Click="CloseButtonClick"/>
+                </DockPanel>
+            </Grid>
         </DockPanel>
     </Grid>
 </Window>
