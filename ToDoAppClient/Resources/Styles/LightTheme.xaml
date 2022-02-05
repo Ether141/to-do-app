@@ -8,6 +8,11 @@
     <SolidColorBrush x:Key="secondBackgroundBrush">#ffd4d4d4</SolidColorBrush>
     <SolidColorBrush x:Key="thirdBackgroundBrush">#ffe3e3e3</SolidColorBrush>
 
+    <SolidColorBrush x:Key="buttonHoverBrush">#ffededed</SolidColorBrush>
+    <SolidColorBrush x:Key="buttonPressedBrush">#ffdbdbdb</SolidColorBrush>
+
+    <SolidColorBrush x:Key="errorColor">DarkRed</SolidColorBrush>
+    
     <BitmapImage x:Key="closeIcon" UriSource="/Resources/Images/Icons/close.png"/>
     <BitmapImage x:Key="maximizeIcon" UriSource="/Resources/Images/Icons/maximize.png"/>
     <BitmapImage x:Key="minimizeIcon" UriSource="/Resources/Images/Icons/minimize.png"/>

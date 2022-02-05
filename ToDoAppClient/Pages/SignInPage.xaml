@@ -1,0 +1,33 @@
+﻿<Page x:Class="ToDoAppClient.Pages.SignInPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:str="clr-namespace:ToDoAppClient.Resources.Strings"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ToDoAppClient.Pages"
+      mc:Ignorable="d" 
+      Width="500" Height="600"
+      Title="SignInPage"
+      Background="{DynamicResource backgroundBrush}">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <Image Source="/Resources/Images/ToDoAppLogo/ToDoAppLogo.png" Width="200" Height="200"/>
+
+            <DockPanel Width="340" Height="40">
+                <Label DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{x:Static str:Resource.login}"/>
+                <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" x:Name="loginBox"/>
+            </DockPanel>
+
+            <DockPanel Width="340" Height="40">
+                <Label DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{x:Static str:Resource.password}"/>
+                <PasswordBox PasswordChar="*" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" x:Name="passwordBox"/>
+            </DockPanel>
+
+            <Label Name="errorLabel" Content="" Foreground="DarkRed" HorizontalAlignment="Center" Margin="0 15 0 0"/>
+
+            <Button Style="{StaticResource mainButton}" Content="{x:Static str:Resource.signIn}" Margin="0 15 0 0" Click="SignInButtonClick"/>
+            <Button Style="{StaticResource mainButton}" Content="{x:Static str:Resource.back}" Margin="0 5 0 0" Click="BackButtonClick"/>
+        </StackPanel>
+    </Grid>
+</Page>

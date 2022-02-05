@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoAppClient"
+        xmlns:pages="clr-namespace:ToDoAppClient.Pages"
         xmlns:customControls="clr-namespace:ToDoAppClient.Controls"
         xmlns:str="clr-namespace:ToDoAppClient.Resources.Strings"
         mc:Ignorable="d"
@@ -24,19 +25,24 @@
     </WindowChrome.WindowChrome>
 
     <Grid>
-        <DockPanel x:Name="titlebar" Height="28" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{DynamicResource thirdBackgroundBrush}">
-            <Grid>
-                <DockPanel>
-                    <Image Source="/Resources/Images/ToDoAppLogo/favicon.ico" Width="17" Height="17" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Margin="5 0 2 0"/>
-                    <Label x:Name="titlebarLabel" Content="{x:Static str:Resource.appName}"/>
-                </DockPanel>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top" x:Name="titlebar" Height="28" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{DynamicResource thirdBackgroundBrush}">
+                <Grid>
+                    <DockPanel>
+                        <Image Source="/Resources/Images/ToDoAppLogo/favicon.ico" Width="17" Height="17" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased" Margin="5 0 2 0"/>
+                        <Label x:Name="titlebarLabel" Content="{x:Static str:Resource.appName}"/>
+                    </DockPanel>
 
-                <DockPanel HorizontalAlignment="Right">
-                    <customControls:TitlebarNavButton ButtonType="Minimize" HorizontalAlignment="Right" Click="MinimizeButtonClick"/>
-                    <customControls:TitlebarNavButton x:Name="windowedButton" ButtonType="Maximize" HorizontalAlignment="Right" Click="WindowedButtonClick"/>
-                    <customControls:TitlebarNavButton ButtonType="Close" HorizontalAlignment="Right" Click="CloseButtonClick"/>
-                </DockPanel>
-            </Grid>
+                    <DockPanel HorizontalAlignment="Right">
+                        <customControls:TitlebarNavButton ButtonType="Minimize" HorizontalAlignment="Right" Click="MinimizeButtonClick"/>
+                        <customControls:TitlebarNavButton x:Name="windowedButton" ButtonType="Maximize" HorizontalAlignment="Right" Click="WindowedButtonClick"/>
+                        <customControls:TitlebarNavButton ButtonType="Close" HorizontalAlignment="Right" Click="CloseButtonClick"/>
+                    </DockPanel>
+                </Grid>
+            </DockPanel>
+
+            <Frame x:Name="pageDisplay" DockPanel.Dock="Top" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" MaxHeight="692" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+
         </DockPanel>
     </Grid>
 </Window>

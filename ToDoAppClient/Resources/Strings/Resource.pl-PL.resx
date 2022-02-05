@@ -120,4 +120,88 @@
   <data name="appName" xml:space="preserve">
     <value>ToDoApp</value>
   </data>
+  <data name="back" xml:space="preserve">
+    <value>Powrót</value>
+  </data>
+  <data name="confirmPassword" xml:space="preserve">
+    <value>Potwierdź hasło</value>
+  </data>
+  <data name="createAccount" xml:space="preserve">
+    <value>Załóż konto</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Adres e-mail</value>
+  </data>
+  <data name="firstName" xml:space="preserve">
+    <value>Imię</value>
+  </data>
+  <data name="firstNameIsTooLong" xml:space="preserve">
+    <value>Podane imię jest za długie</value>
+  </data>
+  <data name="firstNameIsTooShort" xml:space="preserve">
+    <value>Podane imię jest za krótkie</value>
+  </data>
+  <data name="giveFirstName" xml:space="preserve">
+    <value>Musisz podać imię</value>
+  </data>
+  <data name="giveLastName" xml:space="preserve">
+    <value>Musisz podać nazwisko</value>
+  </data>
+  <data name="giveLogin" xml:space="preserve">
+    <value>Musisz podać login</value>
+  </data>
+  <data name="givePassword" xml:space="preserve">
+    <value>Musisz podać hasło</value>
+  </data>
+  <data name="giveValue" xml:space="preserve">
+    <value>Musisz podać wartość</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>Nazwisko</value>
+  </data>
+  <data name="lastNameIsTooLong" xml:space="preserve">
+    <value>Podane nazwisko jest za długie</value>
+  </data>
+  <data name="lastNameIsTooShort" xml:space="preserve">
+    <value>Podane nazwisko jest za krótkie</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="loginDoesNotMatchRegexMsg" xml:space="preserve">
+    <value>Podany login jest błędny</value>
+  </data>
+  <data name="loginIsTooLong" xml:space="preserve">
+    <value>Podany login jest za długi</value>
+  </data>
+  <data name="loginIsTooShort" xml:space="preserve">
+    <value>Podany login jest za krótki</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Hasło</value>
+  </data>
+  <data name="passwordIsTooLong" xml:space="preserve">
+    <value>Podane hasło jest za długie</value>
+  </data>
+  <data name="passwordIsTooShort" xml:space="preserve">
+    <value>Podane hasło jest za krótkie</value>
+  </data>
+  <data name="passwordMustHasLowerChar" xml:space="preserve">
+    <value>Hasło musi zawierać przynajmniej jedną małą literę</value>
+  </data>
+  <data name="passwordMustHasNumber" xml:space="preserve">
+    <value>Hasło musi zawierać przynajmniej jedną cyfrę</value>
+  </data>
+  <data name="passwordMustHasUpperChar" xml:space="preserve">
+    <value>Hasło musi zawierać przynajmniej jedną wielką literę</value>
+  </data>
+  <data name="passwordsAreNotSame" xml:space="preserve">
+    <value>Podane hasła nie są takie same</value>
+  </data>
+  <data name="signIn" xml:space="preserve">
+    <value>Zaloguj się</value>
+  </data>
+  <data name="wrongEmail" xml:space="preserve">
+    <value>Podany adres e-mail jest błędny</value>
+  </data>
 </root>

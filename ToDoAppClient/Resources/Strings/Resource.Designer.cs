@@ -68,5 +68,266 @@ namespace ToDoAppClient.Resources.Strings {
                 return ResourceManager.GetString("appName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Back.
+        /// </summary>
+        public static string back {
+            get {
+                return ResourceManager.GetString("back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Confirm password.
+        /// </summary>
+        public static string confirmPassword {
+            get {
+                return ResourceManager.GetString("confirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Create account.
+        /// </summary>
+        public static string createAccount {
+            get {
+                return ResourceManager.GetString("createAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu E-maill address.
+        /// </summary>
+        public static string email {
+            get {
+                return ResourceManager.GetString("email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu First name.
+        /// </summary>
+        public static string firstName {
+            get {
+                return ResourceManager.GetString("firstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given first name is too long.
+        /// </summary>
+        public static string firstNameIsTooLong {
+            get {
+                return ResourceManager.GetString("firstNameIsTooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given first name is too short.
+        /// </summary>
+        public static string firstNameIsTooShort {
+            get {
+                return ResourceManager.GetString("firstNameIsTooShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu You must enter a first name.
+        /// </summary>
+        public static string giveFirstName {
+            get {
+                return ResourceManager.GetString("giveFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu You must enter a last name.
+        /// </summary>
+        public static string giveLastName {
+            get {
+                return ResourceManager.GetString("giveLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu You must enter a login.
+        /// </summary>
+        public static string giveLogin {
+            get {
+                return ResourceManager.GetString("giveLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu You must enter a password.
+        /// </summary>
+        public static string givePassword {
+            get {
+                return ResourceManager.GetString("givePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu You must enter a value.
+        /// </summary>
+        public static string giveValue {
+            get {
+                return ResourceManager.GetString("giveValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Last name.
+        /// </summary>
+        public static string lastName {
+            get {
+                return ResourceManager.GetString("lastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given last name is too long.
+        /// </summary>
+        public static string lastNameIsTooLong {
+            get {
+                return ResourceManager.GetString("lastNameIsTooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given last name is too short.
+        /// </summary>
+        public static string lastNameIsTooShort {
+            get {
+                return ResourceManager.GetString("lastNameIsTooShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Login.
+        /// </summary>
+        public static string login {
+            get {
+                return ResourceManager.GetString("login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given login is wrong.
+        /// </summary>
+        public static string loginDoesNotMatchRegexMsg {
+            get {
+                return ResourceManager.GetString("loginDoesNotMatchRegexMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given login is too long.
+        /// </summary>
+        public static string loginIsTooLong {
+            get {
+                return ResourceManager.GetString("loginIsTooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given login is too short.
+        /// </summary>
+        public static string loginIsTooShort {
+            get {
+                return ResourceManager.GetString("loginIsTooShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Password.
+        /// </summary>
+        public static string password {
+            get {
+                return ResourceManager.GetString("password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given password is too long.
+        /// </summary>
+        public static string passwordIsTooLong {
+            get {
+                return ResourceManager.GetString("passwordIsTooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given password is too short.
+        /// </summary>
+        public static string passwordIsTooShort {
+            get {
+                return ResourceManager.GetString("passwordIsTooShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Password must contains at least one lower letter.
+        /// </summary>
+        public static string passwordMustHasLowerChar {
+            get {
+                return ResourceManager.GetString("passwordMustHasLowerChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Password must contains at least one number.
+        /// </summary>
+        public static string passwordMustHasNumber {
+            get {
+                return ResourceManager.GetString("passwordMustHasNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Passowrd must contains at least one symbol.
+        /// </summary>
+        public static string passwordMustHasSymbol {
+            get {
+                return ResourceManager.GetString("passwordMustHasSymbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Password must contains at least one upper letter.
+        /// </summary>
+        public static string passwordMustHasUpperChar {
+            get {
+                return ResourceManager.GetString("passwordMustHasUpperChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given passwords are not same.
+        /// </summary>
+        public static string passwordsAreNotSame {
+            get {
+                return ResourceManager.GetString("passwordsAreNotSame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Sign in.
+        /// </summary>
+        public static string signIn {
+            get {
+                return ResourceManager.GetString("signIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given e-mail address is wrong.
+        /// </summary>
+        public static string wrongEmail {
+            get {
+                return ResourceManager.GetString("wrongEmail", resourceCulture);
+            }
+        }
     }
 }

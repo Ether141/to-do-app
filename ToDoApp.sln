@@ -5,7 +5,12 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoAppClient", "ToDoAppClient\ToDoAppClient.csproj", "{FF192E81-38B5-4710-9812-130781DCF906}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoAppServer", "ToDoAppServer\ToDoAppServer.csproj", "{0674AFBB-AC86-4E22-85B4-A750084221EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoAppServer", "ToDoAppServer\ToDoAppServer.csproj", "{0674AFBB-AC86-4E22-85B4-A750084221EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8FB39CAC-A559-47C3-B006-C4E233AF1D98}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
