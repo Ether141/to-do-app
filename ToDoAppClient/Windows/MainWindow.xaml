@@ -41,7 +41,7 @@
                 </Grid>
             </DockPanel>
 
-            <Frame x:Name="pageDisplay" DockPanel.Dock="Top" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" MaxHeight="692" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+            <Frame x:Name="pageDisplay" DockPanel.Dock="Top" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"  VerticalContentAlignment="Stretch"/>
 
         </DockPanel>
     </Grid>

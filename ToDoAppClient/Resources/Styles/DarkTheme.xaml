@@ -3,6 +3,7 @@
 
     <SolidColorBrush x:Key="foregroundBrush">#ffffffff</SolidColorBrush>
     <SolidColorBrush x:Key="secondForegroundBrush">#ffe0e0e0</SolidColorBrush>
+    <SolidColorBrush x:Key="alphaForegroundBrush">#2fffffff</SolidColorBrush>
 
     <SolidColorBrush x:Key="backgroundBrush">#ff1c1c1c</SolidColorBrush>
     <SolidColorBrush x:Key="secondBackgroundBrush">#ff2e2e2e</SolidColorBrush>
@@ -17,5 +18,9 @@
     <BitmapImage x:Key="maximizeIcon" UriSource="/Resources/Images/Icons/maximize-light.png"/>
     <BitmapImage x:Key="minimizeIcon" UriSource="/Resources/Images/Icons/minimize-light.png"/>
     <BitmapImage x:Key="windowedIcon" UriSource="/Resources/Images/Icons/windowed-light.png"/>
+    <BitmapImage x:Key="logoutIcon" UriSource="/Resources/Images/Icons/logout-icon-light.png"/>
+    <BitmapImage x:Key="toDoNotFinished" UriSource="/Resources/Images/Icons/todo-not-finished-light.png"/>
+
+    <FontFamily x:Key="poppins">/Fonts/#Poppins</FontFamily>
 
 </ResourceDictionary>

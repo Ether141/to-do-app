@@ -21,7 +21,7 @@ namespace ToDoAppClient.Pages
 
             if (isValid)
             {
-                // TODO: Sign in
+                MainWindow.Instance.OpenPage(MainWindow.MainPage, true);
             }
         }
 

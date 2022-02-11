@@ -11,7 +11,6 @@ namespace ToDoAppClient.Core.Themes
         public const string DarkThemeSource = "/Resources/Styles/DarkTheme.xaml";
 
         public const int ThemeDictionaryIndex = 0;
-        public const int ControlsStyleDictionaryIndex = 1;
 
         public ThemesManager(Application parent) => Parent = parent;
 
@@ -19,7 +18,6 @@ namespace ToDoAppClient.Core.Themes
         {
             Uri themeSource = new (GetThemeSource(theme), UriKind.Relative);
             Parent.Resources.MergedDictionaries[ThemeDictionaryIndex].Source = themeSource;
-            Parent.Resources.MergedDictionaries[ControlsStyleDictionaryIndex].MergedDictionaries[0].Source = themeSource;
         }
 
         private static string GetThemeSource(Themes theme)

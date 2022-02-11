@@ -5,17 +5,17 @@ namespace ToDoAppClient
 {
     public partial class MainWindow : Window
     {
-        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        private void AdjustWindowBorders()
         {
             if (WindowState == WindowState.Maximized)
             {
                 windowedButton.ButtonType = TitlebarNavButtonType.Windowed;
-                BorderThickness = new Thickness(8);
+                BorderThickness = new Thickness(MaximizedBorderThickness);
             }
             else
             {
                 windowedButton.ButtonType = TitlebarNavButtonType.Maximize;
-                BorderThickness = new Thickness(1);
+                BorderThickness = new Thickness(WindowedBorderThickness);
             }
         }
 

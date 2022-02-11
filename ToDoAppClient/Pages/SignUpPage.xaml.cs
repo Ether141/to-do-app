@@ -39,44 +39,14 @@ namespace ToDoAppClient.Pages
 
             SetErrorLabelText(string.Empty);
 
-            if (!loginValidationResult.IsValid)
+            if (passwordBox.Password != repeatPasswordBox.Password)
             {
-                SetErrorLabelText((string)loginValidationResult.ErrorContent);
-                loginBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
+                SetErrorLabelText(Resource.passwordsAreNotSame);
+                repeatPasswordBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
             }
             else
             {
-                loginBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
-            }
-
-            if (!firstNameValidationResult.IsValid)
-            {
-                SetErrorLabelText((string)firstNameValidationResult.ErrorContent);
-                firstNameBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
-            }
-            else
-            {
-                firstNameBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
-            }
-
-            if (!lastNameValidationResult.IsValid)
-            {
-                SetErrorLabelText((string)lastNameValidationResult.ErrorContent);
-                lastNameBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
-            }
-            else
-            {
-                lastNameBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
-            }
-
-            if (!emailValidationResult.IsValid)
-            {
-                SetErrorLabelText((string)emailValidationResult.ErrorContent);
-                emailBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
-            }
-            else
-            {
-                emailBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
+                repeatPasswordBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
             }
 
             if (!passwordValidationResult.IsValid)
@@ -89,14 +59,44 @@ namespace ToDoAppClient.Pages
                 passwordBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
             }
 
-            if (passwordBox.Password != repeatPasswordBox.Password)
+            if (!emailValidationResult.IsValid)
             {
-                SetErrorLabelText(Resource.passwordsAreNotSame);
-                repeatPasswordBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
+                SetErrorLabelText((string)emailValidationResult.ErrorContent);
+                emailBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
             }
             else
             {
-                repeatPasswordBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
+                emailBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
+            }
+
+            if (!lastNameValidationResult.IsValid)
+            {
+                SetErrorLabelText((string)lastNameValidationResult.ErrorContent);
+                lastNameBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
+            }
+            else
+            {
+                lastNameBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
+            }
+
+            if (!firstNameValidationResult.IsValid)
+            {
+                SetErrorLabelText((string)firstNameValidationResult.ErrorContent);
+                firstNameBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
+            }
+            else
+            {
+                firstNameBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
+            }
+
+            if (!loginValidationResult.IsValid)
+            {
+                SetErrorLabelText((string)loginValidationResult.ErrorContent);
+                loginBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
+            }
+            else
+            {
+                loginBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
             }
 
             return loginValidationResult.IsValid
