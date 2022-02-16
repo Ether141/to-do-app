@@ -20,6 +20,7 @@
     <BitmapImage x:Key="windowedIcon" UriSource="/Resources/Images/Icons/windowed-light.png"/>
     <BitmapImage x:Key="logoutIcon" UriSource="/Resources/Images/Icons/logout-icon-light.png"/>
     <BitmapImage x:Key="toDoNotFinished" UriSource="/Resources/Images/Icons/todo-not-finished-light.png"/>
+    <BitmapImage x:Key="toDoFinished" UriSource="/Resources/Images/Icons/todo-finished.png"/>
 
     <FontFamily x:Key="poppins">/Fonts/#Poppins</FontFamily>
 

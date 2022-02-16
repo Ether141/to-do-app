@@ -24,20 +24,7 @@
                         </TextBlock.Text>
                     </TextBlock>
 
-                    <Image Width="20" Height="20" Margin="15 0 10 0" Source="{DynamicResource toDoNotFinished}">
-                        <Image.Style>
-                            <Style TargetType="{x:Type Image}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=IsFinished, RelativeSource={RelativeSource FindAncestor, AncestorType=local:ToDoEntry}}" Value="True">
-                                        <Setter Property="Opacity" Value="1"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=IsFinished, RelativeSource={RelativeSource FindAncestor, AncestorType=local:ToDoEntry}}" Value="False">
-                                        <Setter Property="Opacity" Value="0.33"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Image.Style>
-                    </Image>
+                    <Image x:Name="finishedIcon" Width="20" Height="20" Margin="15 0 10 0" Source="{DynamicResource toDoNotFinished}"/>
                 </DockPanel>
             </Grid>
         </Border>

@@ -23,9 +23,9 @@
             </DockPanel>
 
             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="5">
-                <customControls:ToDoEntry EntryName="Lista zakupów 11.02.2022" CurrentGoalsCount="2" GoalsCount="10"/>
-                <customControls:ToDoEntry EntryName="Obowiązki domowe" CurrentGoalsCount="3" GoalsCount="6"/>
-                <customControls:ToDoEntry EntryName="Do zrobienia jutro" CurrentGoalsCount="5" GoalsCount="5"/>
+                <customControls:ToDoEntry EntryName="Lista zakupów 11.02.2022" CurrentGoalsCount="10" GoalsCount="10"/>
+                <customControls:ToDoEntry EntryName="Obowiązki domowe" CurrentGoalsCount="2" GoalsCount="6"/>
+                <customControls:ToDoEntry EntryName="Do zrobienia jutro" CurrentGoalsCount="1" GoalsCount="5"/>
             </StackPanel>
         </StackPanel>
     </Grid>
