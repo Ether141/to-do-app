@@ -12,17 +12,34 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToDoAppClient.Models;
 
 namespace ToDoAppClient.Pages
 {
-    /// <summary>
-    /// Logika interakcji dla klasy ToDoPage.xaml
-    /// </summary>
     public partial class ToDoPage : Page
     {
+        public new ToDoModel DataContext { get; private set; }
+
         public ToDoPage()
         {
             InitializeComponent();
+        }
+
+        public void SetDataContext(ToDoModel dataContext)
+        {
+            DataContext = dataContext;
+            ReloadToDoEntries();
+        }
+
+        public void ReloadToDoEntries()
+        {
+            if (DataContext == null)
+                return;
+        }
+
+        private void BackButtonClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.OpenPage(MainWindow.MainPage);
         }
     }
 }

@@ -8,6 +8,8 @@
 	</PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Resources\Images\Icons\back-light.png" />
+      <None Remove="Resources\Images\Icons\back.png" />
       <None Remove="Resources\Images\Icons\close-light.png" />
       <None Remove="Resources\Images\Icons\close.png" />
       <None Remove="Resources\Images\Icons\loading-spinner.png" />
@@ -37,6 +39,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Resources\Images\Icons\back-light.png" />
+	  <Resource Include="Resources\Images\Icons\back.png" />
 	  <Resource Include="Resources\Images\Icons\close-light.png" />
 	  <Resource Include="Resources\Images\Icons\close.png" />
 	  <Resource Include="Resources\Images\Icons\loading-spinner.png" />

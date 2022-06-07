@@ -19,6 +19,7 @@
     <BitmapImage x:Key="minimizeIcon" UriSource="/Resources/Images/Icons/minimize.png"/>
     <BitmapImage x:Key="windowedIcon" UriSource="/Resources/Images/Icons/windowed.png"/>
     <BitmapImage x:Key="logoutIcon" UriSource="/Resources/Images/Icons/logout-icon.png"/>
+    <BitmapImage x:Key="backIcon" UriSource="/Resources/Images/Icons/back.png"/>
     <BitmapImage x:Key="toDoNotFinished" UriSource="/Resources/Images/Icons/todo-not-finished.png"/>
     <BitmapImage x:Key="toDoFinished" UriSource="/Resources/Images/Icons/todo-finished.png"/>
 

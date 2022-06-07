@@ -15,6 +15,9 @@ namespace ToDoAppClient
         public static SignInPage SignInPage => new SignInPage();
         public static SignUpPage SignUpPage => new SignUpPage();
         public static MainPage MainPage => new MainPage();
+        public static ToDoPage ToDoPage => new ToDoPage();
+
+        public Page CurrentlyOpenedPage { get; private set; }
 
         public const double CaptionSize = 28;
         public const double MaximizedBorderThickness = 8;
@@ -42,6 +45,7 @@ namespace ToDoAppClient
 
         public void OpenPage(Page page, bool isFullScreen)
         {
+            CurrentlyOpenedPage = page;
             pageDisplay.Content = page;
             FullScreenPage = isFullScreen;
 

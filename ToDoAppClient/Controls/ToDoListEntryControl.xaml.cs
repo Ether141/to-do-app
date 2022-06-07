@@ -15,9 +15,12 @@ using System.Windows.Shapes;
 
 namespace ToDoAppClient.Controls
 {
-    public partial class ToDoList : UserControl
+    /// <summary>
+    /// Logika interakcji dla klasy ToDoListEntryControl.xaml
+    /// </summary>
+    public partial class ToDoListEntryControl : UserControl
     {
-        public ToDoList()
+        public ToDoListEntryControl()
         {
             InitializeComponent();
         }
