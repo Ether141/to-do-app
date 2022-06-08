@@ -12,12 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToDoAppClient.Models;
 
 namespace ToDoAppClient.Controls
 {
-    /// <summary>
-    /// Logika interakcji dla klasy ToDoListEntryControl.xaml
-    /// </summary>
     public partial class ToDoListEntryControl : UserControl
     {
         public ToDoListEntryControl()

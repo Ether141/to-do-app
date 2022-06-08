@@ -5,24 +5,32 @@
       xmlns:customControls="clr-namespace:ToDoAppClient.Controls"
       xmlns:str="clr-namespace:ToDoAppClient.Resources.Strings"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ToDoAppClient.Pages"
+      xmlns:local="clr-namespace:ToDoAppClient.Pages" xmlns:models="clr-namespace:ToDoAppClient.Models" d:DataContext="{d:DesignInstance Type=models:ToDoModel}"
       mc:Ignorable="d" 
       Width="1920" Height="1080"
       Title="ToDoPage"
       Background="{DynamicResource backgroundBrush}">
 
     <Grid>
-        <StackPanel Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="15">
             <DockPanel Margin="15">
-                <Label Content="Lista zakupów 15.02.2022" FontSize="32"/>
+                <Label Content="{Binding Name}" FontSize="32"/>
                 <Button Style="{StaticResource imageButton}" HorizontalAlignment="Right" Content="{DynamicResource backIcon}" Width="30" Height="30" Margin="0 0 15 0" Click="BackButtonClick"/>
             </DockPanel>
-            
-            <Rectangle Fill="{DynamicResource secondBackgroundBrush}" Height="1" Margin="10 5 10 0"/>
 
-            <StackPanel Margin="15">
-                <customControls:ToDoListEntryControl/>
-            </StackPanel>
+            <Rectangle Fill="{DynamicResource secondBackgroundBrush}" Height="1" Margin="10 5 10 0"/>
         </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Margin="15" VerticalAlignment="Top" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+            <StackPanel x:Name="todoEntriesList"/>
+        </ScrollViewer>
     </Grid>
 </Page>

@@ -88,6 +88,7 @@ namespace ToDoAppClient.Controls
         public void SetToDoContent(ToDoModel toDoModel)
         {
             ToDoContent = toDoModel;
+            EntryName = toDoModel.Name;
             GoalsCount = ToDoContent.ToDoEntries.Count;
             CurrentGoalsCount = ToDoContent.DoneEntriesCount;
         }

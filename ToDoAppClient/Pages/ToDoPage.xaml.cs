@@ -1,25 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ToDoAppClient.Controls;
 using ToDoAppClient.Models;
 
 namespace ToDoAppClient.Pages
 {
     public partial class ToDoPage : Page
     {
-        public new ToDoModel DataContext { get; private set; }
-
         public ToDoPage()
         {
             InitializeComponent();
@@ -33,13 +20,30 @@ namespace ToDoAppClient.Pages
 
         public void ReloadToDoEntries()
         {
-            if (DataContext == null)
+            if (DataContext == null || DataContext.GetType() != typeof(ToDoModel))
                 return;
+
+            todoEntriesList.Children.Clear();
+
+            ToDoModel model = (ToDoModel)DataContext;
+
+            foreach (var todoEntry in model.ToDoEntries)
+            {
+                ToDoListEntryControl newControl = new ToDoListEntryControl
+                {
+                    DataContext = todoEntry
+                };
+                todoEntriesList.Children.Add(newControl);
+            }
         }
 
         private void BackButtonClick(object sender, RoutedEventArgs e)
         {
-            MainWindow.Instance.OpenPage(MainWindow.MainPage);
+            if (MainPage.Current != null)
+            {
+                MainWindow.Instance.OpenPage(MainPage.Current);
+                MainPage.Current.DrawToDoLists();
+            }
         }
     }
 }

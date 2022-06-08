@@ -18,8 +18,8 @@
                     <TextBlock FontSize="16" VerticalAlignment="Center">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="{}{0} / {1}">
-                                <Binding Path="CurrentGoalsCount" RelativeSource="{RelativeSource FindAncestor, AncestorType=local:ToDoEntryControl}" />
-                                <Binding Path="GoalsCount" RelativeSource="{RelativeSource FindAncestor, AncestorType=local:ToDoEntryControl}"/>
+                                <Binding Path="CurrentGoalsCount" RelativeSource="{RelativeSource FindAncestor, AncestorType=local:ToDoEntryControl}" UpdateSourceTrigger="PropertyChanged"/>
+                                <Binding Path="GoalsCount" RelativeSource="{RelativeSource FindAncestor, AncestorType=local:ToDoEntryControl}" UpdateSourceTrigger="PropertyChanged"/>
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
