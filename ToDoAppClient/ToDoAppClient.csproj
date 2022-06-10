@@ -8,8 +8,12 @@
 	</PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Resources\Images\Icons\accept.png" />
+      <None Remove="Resources\Images\Icons\add-light.png" />
+      <None Remove="Resources\Images\Icons\add.png" />
       <None Remove="Resources\Images\Icons\back-light.png" />
       <None Remove="Resources\Images\Icons\back.png" />
+      <None Remove="Resources\Images\Icons\cancel.png" />
       <None Remove="Resources\Images\Icons\close-light.png" />
       <None Remove="Resources\Images\Icons\close.png" />
       <None Remove="Resources\Images\Icons\loading-spinner.png" />
@@ -39,8 +43,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Resources\Images\Icons\accept.png" />
+	  <Resource Include="Resources\Images\Icons\add-light.png" />
+	  <Resource Include="Resources\Images\Icons\add.png" />
 	  <Resource Include="Resources\Images\Icons\back-light.png" />
 	  <Resource Include="Resources\Images\Icons\back.png" />
+	  <Resource Include="Resources\Images\Icons\cancel.png" />
 	  <Resource Include="Resources\Images\Icons\close-light.png" />
 	  <Resource Include="Resources\Images\Icons\close.png" />
 	  <Resource Include="Resources\Images\Icons\loading-spinner.png" />

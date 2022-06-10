@@ -1,0 +1,21 @@
+﻿<Window x:Class="ToDoAppClient.Pages.AddListPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:str="clr-namespace:ToDoAppClient.Resources.Strings"
+        xmlns:local="clr-namespace:ToDoAppClient.Pages"
+        mc:Ignorable="d"
+        BorderBrush="{DynamicResource thirdBackgroundBrush}"
+        BorderThickness="1"
+        Title="AddListPopup" Height="40" Width="365" WindowStyle="None" ShowInTaskbar="False" Topmost="True" Background="{DynamicResource backgroundBrush}" ResizeMode="NoResize">
+    
+    <Grid>
+        <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Label Content="{x:Static str:Resource.listName}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox Height="30" Margin="7 0 7 0" HorizontalAlignment="Stretch" Width="auto"/>
+            <Button DockPanel.Dock="Right" Margin="0 0 7 0"  Style="{StaticResource imageButton}" Content="{DynamicResource cancelColor}" Height="30" Width="30" IsCancel="True"/>
+            <Button DockPanel.Dock="Right" Style="{StaticResource imageButton}" Content="{DynamicResource acceptColor}" Height="30" Width="30"/>
+        </DockPanel>
+    </Grid>
+</Window>

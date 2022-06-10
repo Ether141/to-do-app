@@ -61,6 +61,15 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Add new ToDo list.
+        /// </summary>
+        public static string addNewList {
+            get {
+                return ResourceManager.GetString("addNewList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu ToDoApp.
         /// </summary>
         public static string appName {
@@ -205,6 +214,15 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu List name.
+        /// </summary>
+        public static string listName {
+            get {
+                return ResourceManager.GetString("listName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Login.
         /// </summary>
         public static string login {
@@ -237,6 +255,15 @@ namespace ToDoAppClient.Resources.Strings {
         public static string loginIsTooShort {
             get {
                 return ResourceManager.GetString("loginIsTooShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Log out.
+        /// </summary>
+        public static string logout {
+            get {
+                return ResourceManager.GetString("logout", resourceCulture);
             }
         }
         

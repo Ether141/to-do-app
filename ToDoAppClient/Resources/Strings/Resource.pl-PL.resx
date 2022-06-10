@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="addNewList" xml:space="preserve">
+    <value>Dodaj nową listę ToDo</value>
+  </data>
   <data name="appName" xml:space="preserve">
     <value>ToDoApp</value>
   </data>
@@ -165,6 +168,9 @@
   <data name="lastNameIsTooShort" xml:space="preserve">
     <value>Podane nazwisko jest za krótkie</value>
   </data>
+  <data name="listName" xml:space="preserve">
+    <value>Nazwa listy</value>
+  </data>
   <data name="login" xml:space="preserve">
     <value>Login</value>
   </data>
@@ -176,6 +182,9 @@
   </data>
   <data name="loginIsTooShort" xml:space="preserve">
     <value>Podany login jest za krótki</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Wyloguj się</value>
   </data>
   <data name="password" xml:space="preserve">
     <value>Hasło</value>
@@ -191,6 +200,9 @@
   </data>
   <data name="passwordMustHasNumber" xml:space="preserve">
     <value>Hasło musi zawierać przynajmniej jedną cyfrę</value>
+  </data>
+  <data name="passwordMustHasSymbol" xml:space="preserve">
+    <value>Hasło musi zawierać przynajmniej jeden symbol</value>
   </data>
   <data name="passwordMustHasUpperChar" xml:space="preserve">
     <value>Hasło musi zawierać przynajmniej jedną wielką literę</value>

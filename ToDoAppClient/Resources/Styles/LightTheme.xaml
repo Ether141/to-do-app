@@ -22,6 +22,9 @@
     <BitmapImage x:Key="backIcon" UriSource="/Resources/Images/Icons/back.png"/>
     <BitmapImage x:Key="toDoNotFinished" UriSource="/Resources/Images/Icons/todo-not-finished.png"/>
     <BitmapImage x:Key="toDoFinished" UriSource="/Resources/Images/Icons/todo-finished.png"/>
+    <BitmapImage x:Key="acceptColor" UriSource="/Resources/Images/Icons/accept.png"/>
+    <BitmapImage x:Key="cancelColor" UriSource="/Resources/Images/Icons/cancel.png"/>
+    <BitmapImage x:Key="addIcon" UriSource="/Resources/Images/Icons/add.png"/>
 
     <FontFamily x:Key="poppins">/Fonts/#Poppins</FontFamily>
 

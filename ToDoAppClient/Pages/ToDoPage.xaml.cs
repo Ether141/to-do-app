@@ -40,10 +40,7 @@ namespace ToDoAppClient.Pages
         private void BackButtonClick(object sender, RoutedEventArgs e)
         {
             if (MainPage.Current != null)
-            {
-                MainWindow.Instance.OpenPage(MainPage.Current);
-                MainPage.Current.DrawToDoLists();
-            }
+                MainPage.Current.Reopen();
         }
     }
 }
