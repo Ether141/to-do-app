@@ -25,6 +25,8 @@
     <BitmapImage x:Key="acceptColor" UriSource="/Resources/Images/Icons/accept.png"/>
     <BitmapImage x:Key="cancelColor" UriSource="/Resources/Images/Icons/cancel.png"/>
     <BitmapImage x:Key="addIcon" UriSource="/Resources/Images/Icons/add-light.png"/>
+    <BitmapImage x:Key="removeIcon" UriSource="/Resources/Images/Icons/remove-light.png"/>
+    <BitmapImage x:Key="renameIcon" UriSource="/Resources/Images/Icons/rename-light.png"/>
 
     <FontFamily x:Key="poppins">/Fonts/#Poppins</FontFamily>
 

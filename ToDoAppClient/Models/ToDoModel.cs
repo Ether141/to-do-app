@@ -6,11 +6,16 @@ namespace ToDoAppClient.Models
 {
     public class ToDoModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public List<ToDoEntry> ToDoEntries { get; private set; } = new List<ToDoEntry>();
+        public List<ToDoEntry> ToDoEntries { get; set; } = new List<ToDoEntry>();
         public int DoneEntriesCount => ToDoEntries.Count(entry => entry.IsDone);
 
-        public ToDoModel(string name) => Name = name;
+        public ToDoModel(int id, string name)
+        {
+            Name = name;
+            Id = id;
+        }
     }
 
     public class ToDoEntry

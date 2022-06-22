@@ -71,9 +71,9 @@ namespace ToDoAppClient.Controls
             }
         }
 
-        public ToDoEntryControl(string name, ToDoModel content)
+        public ToDoEntryControl(ToDoModel content)
         {
-            EntryName = name;
+            EntryName = content.Name;
             InitializeComponent();
             PrepareEvents();
             SetToDoContent(content);

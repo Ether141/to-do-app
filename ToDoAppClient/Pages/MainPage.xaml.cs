@@ -3,13 +3,14 @@ using System.Windows.Controls;
 using ToDoAppClient.Controls;
 using ToDoAppClient.Core;
 using ToDoAppClient.Models;
-using ToDoAppClient.Utilities;
+using ToDoAppClient.Windows;
+using ToDoAppClient.Resources.Strings;
 
 namespace ToDoAppClient.Pages
 {
     public partial class MainPage : Page
     {
-        private User currentUser;
+        private readonly User currentUser;
 
         public static MainPage? Current { get; private set; }
         public static ToDoListsManager ListsManager { get; private set; }
@@ -30,11 +31,7 @@ namespace ToDoAppClient.Pages
             todoList.Children.Clear();
             ToDoModel[] allLists = ListsManager.AllLists;
             foreach (var model in allLists)
-            {
-                ToDoEntryControl toDoEntryControl = new ToDoEntryControl("List zakupów", model);
-                toDoEntryControl.Click += ListEntryClick;
-                todoList.Children.Add(toDoEntryControl);
-            }
+                DrawToDoListEntry(model);
         }
 
         public void Reopen()
@@ -46,6 +43,20 @@ namespace ToDoAppClient.Pages
             DrawToDoLists();
         }
 
+        private void DrawToDoListEntry(ToDoModel model)
+        {
+            ToDoEntryControl toDoEntryControl = new ToDoEntryControl(model);
+            toDoEntryControl.Click += ListEntryClick;
+            todoList.Children.Add(toDoEntryControl);
+        }
+
+        private void OpenToDoList(ToDoModel list)
+        {
+            ToDoPage toDoPage = MainWindow.ToDoPage;
+            toDoPage.SetDataContext(list);
+            MainWindow.Instance.OpenPage(toDoPage);
+        }
+
         private void LogOutClick(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.OpenPage(MainWindow.StartingPage);
@@ -54,18 +65,19 @@ namespace ToDoAppClient.Pages
 
         private void AddListClick(object sender, RoutedEventArgs e)
         {
-            AddListPopup popup = new AddListPopup();
-            Point mousePos = PositionsUtilities.GetMousePosition();
-            popup.Left = mousePos.X;
-            popup.Top = mousePos.Y - (popup.Height / 2);
+            TextPopup popup = new TextPopup(Resource.listName);
+
+            popup.OnAcceptPopup += text =>
+            {
+                ToDoModel newList = new ToDoModel(10, text);
+                ListsManager.AddToDoList(newList);
+                DrawToDoListEntry(newList);
+                OpenToDoList(newList);
+            };
+
             popup.ShowDialog();
         }
 
-        private void ListEntryClick(object sender, RoutedEventArgs e)
-        {
-            ToDoPage toDoPage = MainWindow.ToDoPage;
-            toDoPage.SetDataContext(((ToDoEntryControl)sender).ToDoContent);
-            MainWindow.Instance.OpenPage(toDoPage);
-        }
+        private void ListEntryClick(object sender, RoutedEventArgs e) => OpenToDoList(((ToDoEntryControl)sender).ToDoContent);
     }
 }

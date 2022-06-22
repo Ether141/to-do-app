@@ -70,6 +70,15 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Add task.
+        /// </summary>
+        public static string addTask {
+            get {
+                return ResourceManager.GetString("addTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu ToDoApp.
         /// </summary>
         public static string appName {
@@ -268,6 +277,15 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu New name.
+        /// </summary>
+        public static string newName {
+            get {
+                return ResourceManager.GetString("newName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Password.
         /// </summary>
         public static string password {
@@ -336,6 +354,24 @@ namespace ToDoAppClient.Resources.Strings {
         public static string passwordsAreNotSame {
             get {
                 return ResourceManager.GetString("passwordsAreNotSame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Remove list.
+        /// </summary>
+        public static string removeList {
+            get {
+                return ResourceManager.GetString("removeList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Rename list.
+        /// </summary>
+        public static string renameList {
+            get {
+                return ResourceManager.GetString("renameList", resourceCulture);
             }
         }
         

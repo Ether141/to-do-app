@@ -5,6 +5,7 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <UseWindowsForms>True</UseWindowsForms>
 	</PropertyGroup>
 
     <ItemGroup>
@@ -23,6 +24,10 @@
       <None Remove="Resources\Images\Icons\maximize.png" />
       <None Remove="Resources\Images\Icons\minimize-light.png" />
       <None Remove="Resources\Images\Icons\minimize.png" />
+      <None Remove="Resources\Images\Icons\remove-light.png" />
+      <None Remove="Resources\Images\Icons\remove.png" />
+      <None Remove="Resources\Images\Icons\rename-light.png" />
+      <None Remove="Resources\Images\Icons\rename.png" />
       <None Remove="Resources\Images\Icons\todo-finished.png" />
       <None Remove="Resources\Images\Icons\todo-not-finished-light.png" />
       <None Remove="Resources\Images\Icons\todo-not-finished.png" />
@@ -58,6 +63,10 @@
 	  <Resource Include="Resources\Images\Icons\maximize.png" />
 	  <Resource Include="Resources\Images\Icons\minimize-light.png" />
 	  <Resource Include="Resources\Images\Icons\minimize.png" />
+	  <Resource Include="Resources\Images\Icons\remove-light.png" />
+	  <Resource Include="Resources\Images\Icons\remove.png" />
+	  <Resource Include="Resources\Images\Icons\rename-light.png" />
+	  <Resource Include="Resources\Images\Icons\rename.png" />
 	  <Resource Include="Resources\Images\Icons\todo-finished.png" />
 	  <Resource Include="Resources\Images\Icons\todo-not-finished-light.png" />
 	  <Resource Include="Resources\Images\Icons\todo-not-finished.png" />

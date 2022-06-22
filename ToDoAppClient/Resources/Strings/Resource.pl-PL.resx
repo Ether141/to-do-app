@@ -120,6 +120,9 @@
   <data name="addNewList" xml:space="preserve">
     <value>Dodaj nową listę ToDo</value>
   </data>
+  <data name="addTask" xml:space="preserve">
+    <value>Dodaj zadanie</value>
+  </data>
   <data name="appName" xml:space="preserve">
     <value>ToDoApp</value>
   </data>
@@ -186,6 +189,9 @@
   <data name="logout" xml:space="preserve">
     <value>Wyloguj się</value>
   </data>
+  <data name="newName" xml:space="preserve">
+    <value>Nowa nazwa</value>
+  </data>
   <data name="password" xml:space="preserve">
     <value>Hasło</value>
   </data>
@@ -209,6 +215,12 @@
   </data>
   <data name="passwordsAreNotSame" xml:space="preserve">
     <value>Podane hasła nie są takie same</value>
+  </data>
+  <data name="removeList" xml:space="preserve">
+    <value>Usuń listę</value>
+  </data>
+  <data name="renameList" xml:space="preserve">
+    <value>Zmień nazwę listy</value>
   </data>
   <data name="signIn" xml:space="preserve">
     <value>Zaloguj się</value>

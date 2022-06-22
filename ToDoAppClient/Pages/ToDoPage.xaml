@@ -22,8 +22,14 @@
 
         <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="15">
             <DockPanel Margin="15">
-                <Label Content="{Binding Name}" FontSize="32"/>
-                <Button Style="{StaticResource imageButton}" HorizontalAlignment="Right" Content="{DynamicResource backIcon}" Width="30" Height="30" Margin="0 0 15 0" Click="BackButtonClick"/>
+                <Label x:Name="listNameLabel" Content="{Binding Name}" FontSize="32"/>
+
+                <DockPanel HorizontalAlignment="Right">
+                    <Button Style="{StaticResource imageButton}" Content="{DynamicResource renameIcon}" Width="30" Height="30" Margin="0 0 15 0" ToolTip="{x:Static str:Resource.renameList}" Click="RenameListButtonClick"/>
+                    <Button Style="{StaticResource imageButton}" Content="{DynamicResource addIcon}" Width="30" Height="30" Margin="0 0 15 0" ToolTip="{x:Static str:Resource.addTask}" Click="AddEntryButtonClick"/>
+                    <Button Style="{StaticResource imageButton}" Content="{DynamicResource removeIcon}" Width="30" Height="30" Margin="0 0 15 0" ToolTip="{x:Static str:Resource.removeList}" Click="RemoveListButtonClick"/>
+                    <Button Style="{StaticResource imageButton}" Content="{DynamicResource backIcon}" Width="30" Height="30" Margin="0 0 15 0" ToolTip="{x:Static str:Resource.back}" Click="BackButtonClick"/>
+                </DockPanel>
             </DockPanel>
 
             <Rectangle Fill="{DynamicResource secondBackgroundBrush}" Height="1" Margin="10 5 10 0"/>
