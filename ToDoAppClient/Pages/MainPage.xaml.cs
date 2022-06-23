@@ -3,8 +3,8 @@ using System.Windows.Controls;
 using ToDoAppClient.Controls;
 using ToDoAppClient.Core;
 using ToDoAppClient.Models;
-using ToDoAppClient.Windows;
 using ToDoAppClient.Resources.Strings;
+using ToDoAppClient.Windows;
 
 namespace ToDoAppClient.Pages
 {
@@ -63,10 +63,12 @@ namespace ToDoAppClient.Pages
             Current = null;
         }
 
+        private void SettingsButtonClick(object sender, RoutedEventArgs e) => MainWindow.Instance.OpenPage(MainWindow.SettingsPage);
+
         private void AddListClick(object sender, RoutedEventArgs e)
         {
             TextPopup popup = new TextPopup(Resource.listName);
-
+            popup.MaxLength = ToDoModel.MaxListNameLength;
             popup.OnAcceptPopup += text =>
             {
                 ToDoModel newList = new ToDoModel(10, text);
@@ -74,7 +76,6 @@ namespace ToDoAppClient.Pages
                 DrawToDoListEntry(newList);
                 OpenToDoList(newList);
             };
-
             popup.ShowDialog();
         }
 

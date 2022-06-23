@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         BorderBrush="{DynamicResource thirdBackgroundBrush}"
         BorderThickness="1"
-        Title="AddListPopup" Height="40" Width="365" WindowStyle="None" ShowInTaskbar="False" Topmost="True" Background="{DynamicResource backgroundBrush}" ResizeMode="NoResize">
+        Title="AddListPopup" Height="40" Width="375" MinWidth="375" WindowStyle="None" ShowInTaskbar="False" Topmost="True" Background="{DynamicResource backgroundBrush}" ResizeMode="NoResize">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
 
         <Label Margin="0 0 5 0" VerticalAlignment="Center" Content="{Binding Path=PopupLabel, RelativeSource={RelativeSource FindAncestor, AncestorType=local:TextPopup}}" Grid.Column="0"/>
-        <TextBox x:Name="inputBox" VerticalAlignment="Center" Width="auto" Grid.Column="1"/>
+        <TextBox x:Name="inputBox" VerticalAlignment="Center" Width="auto" Grid.Column="1" MaxLength="{Binding Path=MaxLength, RelativeSource={RelativeSource FindAncestor, AncestorType=local:TextPopup}}"/>
         <Button Grid.Column="2" Margin="4 0 0 0" HorizontalAlignment="Center" Style="{StaticResource imageButton}" Content="{DynamicResource acceptColor}" Height="30" Width="30" Click="AcceptButtonClick"/>
         <Button Grid.Column="3" HorizontalAlignment="Center" Style="{StaticResource imageButton}" Content="{DynamicResource cancelColor}" Height="30" Width="30" IsCancel="True"/>
     </Grid>

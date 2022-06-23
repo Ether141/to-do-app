@@ -22,7 +22,7 @@
 
         <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="15">
             <DockPanel Margin="15">
-                <Label x:Name="listNameLabel" Content="{Binding Name}" FontSize="32"/>
+                <Label x:Name="listNameLabel" Content="{Binding Name}" FontSize="28"/>
 
                 <DockPanel HorizontalAlignment="Right">
                     <Button Style="{StaticResource imageButton}" Content="{DynamicResource renameIcon}" Width="30" Height="30" Margin="0 0 15 0" ToolTip="{x:Static str:Resource.renameList}" Click="RenameListButtonClick"/>

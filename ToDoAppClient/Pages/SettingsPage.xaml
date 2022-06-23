@@ -1,0 +1,73 @@
+﻿<Page x:Class="ToDoAppClient.Pages.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:str="clr-namespace:ToDoAppClient.Resources.Strings"
+      xmlns:local="clr-namespace:ToDoAppClient.Pages"
+      mc:Ignorable="d" 
+      Title="SettingsPage"
+      Width="1920" Height="1080"
+      Background="{DynamicResource backgroundBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="330"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical" Margin="0 2 0 0" Grid.Column="0" Background="{DynamicResource thirdBackgroundBrush}">
+            <Button Margin="0 200 0 0" Style="{StaticResource settingsButton}">
+                <StackPanel Orientation="Horizontal" Width="310">
+                    <Image Source="{DynamicResource accountIcon}" Width="25" Height="25" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <Label Margin="5 0 0 0" Content="{x:Static str:Resource.account}" VerticalAlignment="Center" FontSize="15"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource settingsButton}">
+                <StackPanel Orientation="Horizontal" Width="310">
+                    <Image Source="{DynamicResource applicationIcon}" Width="25" Height="25" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <Label Margin="5 0 0 0" Content="{x:Static str:Resource.application}" VerticalAlignment="Center" FontSize="15"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource settingsButton}" Click="BackButtonClick">
+                <StackPanel Orientation="Horizontal" Width="310">
+                    <Image Source="{DynamicResource backIcon}" Width="20" Height="20" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <Label Margin="5 0 0 0" Content="{x:Static str:Resource.back}" VerticalAlignment="Center" FontSize="15"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Rectangle Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Width="1" Margin="-10" Fill="{DynamicResource thirdBackgroundBrush}"/>
+
+            <Label Grid.Row="1" Content="{x:Static str:Resource.theme}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Orientation="Horizontal">
+                <RadioButton Name="followSystem" Content="{x:Static str:Resource.themeFollowSystem}" IsChecked="True" GroupName="theme" VerticalAlignment="Center" Checked="ThemeRadioChecked"/>
+                <RadioButton Name="dark" Margin="50 0 0 0" Content="{x:Static str:Resource.dark}" GroupName="theme" VerticalAlignment="Center" Checked="ThemeRadioChecked"/>
+                <RadioButton Name="light" Margin="50 0 0 0" GroupName="theme" Content="{x:Static str:Resource.light}" VerticalAlignment="Center" Checked="ThemeRadioChecked"/>
+            </StackPanel>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Height="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="90 0 0 0" Width="600" Fill="{DynamicResource thirdBackgroundBrush}"/>
+
+            <Label Grid.Row="2" Content="{x:Static str:Resource.language}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Orientation="Horizontal">
+                <RadioButton Content="{x:Static str:Resource.polish}" IsChecked="True" GroupName="lang" VerticalAlignment="Center"/>
+                <RadioButton Margin="50 0 0 0" Content="{x:Static str:Resource.english}" GroupName="lang" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

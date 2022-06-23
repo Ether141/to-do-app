@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -15,27 +16,54 @@ namespace ToDoAppClient.Windows
             get => (string)GetValue(LabelTextProperty);
             set => SetValue(LabelTextProperty, value);
         }
-
         public string Description
         {
             get => (string)GetValue(DescriptionProperty);
             set => SetValue(DescriptionProperty, value);
         }
-
         public ImageSource MessageIcon
         {
             get => (ImageSource)GetValue(IconProperty);
             set => SetValue(IconProperty, value);
         }
 
-        public MessagePopup()
+        public event Action<MessagePopupResult> OnClosePopup;
+
+        public MessagePopup(string label, string description, MessagePopupIcon icon, MessagePopupButtons buttons)
         {
-            BitmapImage img = (BitmapImage)TryFindResource("addIcon");
+            LabelText = label;
+            Description = description;
+            BitmapImage img = (BitmapImage)App.Current.Resources["infoIcon"];
+
+            switch (icon)
+            {
+                case MessagePopupIcon.Error:
+                    img = (BitmapImage)App.Current.Resources["errorIcon"];
+                    break;
+                case MessagePopupIcon.Warning:
+                    img = (BitmapImage)App.Current.Resources["warningIcon"];
+                    break;
+                case MessagePopupIcon.Info:
+                    img = (BitmapImage)App.Current.Resources["infoIcon"];
+                    break;
+            }
+
             MessageIcon = img;
             InitializeComponent();
+            cancelButton.Visibility = buttons == MessagePopupButtons.OkAndCancel ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        private void CloseButtonClick(object sender, RoutedEventArgs e) => Close();
+        private void CloseButtonClick(object sender, RoutedEventArgs e)
+        {
+            OnClosePopup?.Invoke(MessagePopupResult.Cancel);
+            Close();
+        }
+
+        private void OkButtonClick(object sender, RoutedEventArgs e)
+        {
+            OnClosePopup?.Invoke(MessagePopupResult.Ok);
+            Close();
+        }
     }
 
     public enum MessagePopupIcon
@@ -49,5 +77,11 @@ namespace ToDoAppClient.Windows
     {
         Ok,
         OkAndCancel
+    }
+
+    public enum MessagePopupResult
+    {
+        Ok,
+        Cancel
     }
 }

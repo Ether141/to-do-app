@@ -14,7 +14,8 @@
         BorderBrush="{DynamicResource thirdBackgroundBrush}"
         WindowStyle="SingleBorderWindow" 
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="False">
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="28" GlassFrameThickness="0" CornerRadius="0" UseAeroCaptionButtons="False" ResizeBorderThickness="8"/>
@@ -32,20 +33,18 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="44"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <DockPanel Grid.ColumnSpan="3" Grid.Row="0" Height="28" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{DynamicResource thirdBackgroundBrush}">
-            <!--<Label Content="{Binding Path=LabelText, RelativeSource={RelativeSource FindAncestor, AncestorType=local:MessagePopup}}"/>-->
-            <Label Content="Uwaga"/>
+            <Label Content="{Binding Path=LabelText, RelativeSource={RelativeSource FindAncestor, AncestorType=local:MessagePopup}}"/>
             <customControls:TitlebarNavButton ButtonType="Close" HorizontalAlignment="Right" Click="CloseButtonClick"/>
         </DockPanel>
 
         <DockPanel Margin="0 5 0 0" Grid.ColumnSpan="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Image DockPanel.Dock="Top" Source="{Binding Path=MessageIcon, RelativeSource={RelativeSource FindAncestor, AncestorType=local:MessagePopup}}" Width="35" Height="35"/>
-            <TextBlock DockPanel.Dock="Top" Text="Czy na pewno chcesz zakończyć działanie programu?" Margin="10" TextAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap"/>
+            <Image RenderOptions.BitmapScalingMode="HighQuality" DockPanel.Dock="Top" Source="{Binding Path=MessageIcon, RelativeSource={RelativeSource FindAncestor, AncestorType=local:MessagePopup}}" Width="35" Height="35"/>
+            <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Description, RelativeSource={RelativeSource FindAncestor, AncestorType=local:MessagePopup}}" Margin="10" TextAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap"/>
         </DockPanel>
 
-        <Button Grid.Column="0" Visibility="Collapsed" Grid.Row="3" Style="{StaticResource mainButton}" Content="Anuluj" Width="100"/>
-        <Button Grid.Column="1" Visibility="Collapsed" Grid.Row="3" Style="{StaticResource mainButton}" Content="Zastosuj" Width="100"/>
-        <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource mainButton}" Content="OK" Width="100"/>
+        <Button Grid.Column="0" x:Name="cancelButton" Visibility="Collapsed" Grid.Row="3" Style="{StaticResource mainButton}" Content="{x:Static str:Resource.cancel}" Width="100" Click="CloseButtonClick"/>
+        <Button Grid.Column="2" x:Name="okButton" Grid.Row="3" Style="{StaticResource mainButton}" Content="{x:Static str:Resource.ok}" Width="100" Click="OkButtonClick"/>
     </Grid>
 </Window>

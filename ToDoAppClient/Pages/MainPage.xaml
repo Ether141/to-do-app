@@ -20,7 +20,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="50" Background="{DynamicResource thirdBackgroundBrush}" BorderBrush="{DynamicResource backgroundBrush}" BorderThickness="0 1 0 1">
+        <Border Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="50" Background="{DynamicResource thirdBackgroundBrush}" BorderBrush="{DynamicResource backgroundBrush}" BorderThickness="0 2 0 2">
             <DockPanel VerticalAlignment="Center">
                 <DockPanel Margin="0 0 15 0"  HorizontalAlignment="Right" DockPanel.Dock="Right">
                     <Button DockPanel.Dock="Right" Style="{StaticResource imageButton}" Content="{DynamicResource logoutIcon}" Width="30" Height="30" Margin="5 0 15 0" Click="LogOutClick" ToolTip="{x:Static str:Resource.logout}"/>
@@ -29,6 +29,7 @@
 
                 <DockPanel Margin="15 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left">
                     <Button Style="{StaticResource imageButton}" Content="{DynamicResource addIcon}" Height="30" Width="30" Click="AddListClick" ToolTip="{x:Static str:Resource.addNewList}"/>
+                    <Button DockPanel.Dock="Right" Style="{StaticResource imageButton}" Content="{DynamicResource settingsIcon}" Width="30" Height="30" Margin="5 0 15 0" Click="SettingsButtonClick" ToolTip="{x:Static str:Resource.settings}"/>
                 </DockPanel>
             </DockPanel>
         </Border>

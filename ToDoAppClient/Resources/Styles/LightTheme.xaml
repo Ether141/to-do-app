@@ -13,7 +13,8 @@
     <SolidColorBrush x:Key="buttonPressedBrush">#ffdbdbdb</SolidColorBrush>
 
     <SolidColorBrush x:Key="errorColor">DarkRed</SolidColorBrush>
-    
+    <SolidColorBrush x:Key="accentColor">#fff78502</SolidColorBrush>
+
     <BitmapImage x:Key="closeIcon" UriSource="/Resources/Images/Icons/close.png"/>
     <BitmapImage x:Key="maximizeIcon" UriSource="/Resources/Images/Icons/maximize.png"/>
     <BitmapImage x:Key="minimizeIcon" UriSource="/Resources/Images/Icons/minimize.png"/>
@@ -27,6 +28,12 @@
     <BitmapImage x:Key="addIcon" UriSource="/Resources/Images/Icons/add.png"/>
     <BitmapImage x:Key="removeIcon" UriSource="/Resources/Images/Icons/remove.png"/>
     <BitmapImage x:Key="renameIcon" UriSource="/Resources/Images/Icons/rename.png"/>
+    <BitmapImage x:Key="errorIcon" UriSource="/Resources/Images/Icons/error.png"/>
+    <BitmapImage x:Key="warningIcon" UriSource="/Resources/Images/Icons/warning.png"/>
+    <BitmapImage x:Key="infoIcon" UriSource="/Resources/Images/Icons/info.png"/>
+    <BitmapImage x:Key="settingsIcon" UriSource="/Resources/Images/Icons/settings.png"/>
+    <BitmapImage x:Key="applicationIcon" UriSource="/Resources/Images/Icons/application.png"/>
+    <BitmapImage x:Key="accountIcon" UriSource="/Resources/Images/Icons/account.png"/>
 
     <FontFamily x:Key="poppins">/Fonts/#Poppins</FontFamily>
 

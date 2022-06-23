@@ -79,6 +79,13 @@ namespace ToDoAppClient.Core
             }
         }
 
+        public void RemoveList(int listId)
+        {
+            if (!ContainsListWithId(listId))
+                return;
+            allLists.RemoveAll(x => x.Id == listId);
+        }
+
         public bool ContainsListWithId(int id) => allLists.Any(list => list.Id == id);
     }
 }

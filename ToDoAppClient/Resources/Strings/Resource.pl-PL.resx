@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="account" xml:space="preserve">
+    <value>Konto użytkownika</value>
+  </data>
   <data name="addNewList" xml:space="preserve">
     <value>Dodaj nową listę ToDo</value>
   </data>
   <data name="addTask" xml:space="preserve">
     <value>Dodaj zadanie</value>
+  </data>
+  <data name="appearance" xml:space="preserve">
+    <value>Wygląd aplikacji</value>
+  </data>
+  <data name="application" xml:space="preserve">
+    <value>Aplikacja</value>
   </data>
   <data name="appName" xml:space="preserve">
     <value>ToDoApp</value>
@@ -129,14 +138,26 @@
   <data name="back" xml:space="preserve">
     <value>Powrót</value>
   </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
   <data name="confirmPassword" xml:space="preserve">
     <value>Potwierdź hasło</value>
   </data>
   <data name="createAccount" xml:space="preserve">
     <value>Załóż konto</value>
   </data>
+  <data name="dark" xml:space="preserve">
+    <value>Ciemny</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edytuj</value>
+  </data>
   <data name="email" xml:space="preserve">
     <value>Adres e-mail</value>
+  </data>
+  <data name="english" xml:space="preserve">
+    <value>Angielski</value>
   </data>
   <data name="firstName" xml:space="preserve">
     <value>Imię</value>
@@ -162,6 +183,9 @@
   <data name="giveValue" xml:space="preserve">
     <value>Musisz podać wartość</value>
   </data>
+  <data name="language" xml:space="preserve">
+    <value>Język</value>
+  </data>
   <data name="lastName" xml:space="preserve">
     <value>Nazwisko</value>
   </data>
@@ -170,6 +194,9 @@
   </data>
   <data name="lastNameIsTooShort" xml:space="preserve">
     <value>Podane nazwisko jest za krótkie</value>
+  </data>
+  <data name="light" xml:space="preserve">
+    <value>Jasny</value>
   </data>
   <data name="listName" xml:space="preserve">
     <value>Nazwa listy</value>
@@ -191,6 +218,9 @@
   </data>
   <data name="newName" xml:space="preserve">
     <value>Nowa nazwa</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="password" xml:space="preserve">
     <value>Hasło</value>
@@ -216,14 +246,35 @@
   <data name="passwordsAreNotSame" xml:space="preserve">
     <value>Podane hasła nie są takie same</value>
   </data>
+  <data name="polish" xml:space="preserve">
+    <value>Polski</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
   <data name="removeList" xml:space="preserve">
     <value>Usuń listę</value>
   </data>
   <data name="renameList" xml:space="preserve">
     <value>Zmień nazwę listy</value>
   </data>
+  <data name="settings" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
   <data name="signIn" xml:space="preserve">
     <value>Zaloguj się</value>
+  </data>
+  <data name="sureRemoveList" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć tę listę?</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Motyw aplikacji</value>
+  </data>
+  <data name="themeFollowSystem" xml:space="preserve">
+    <value>Zgodny z systemem</value>
+  </data>
+  <data name="warning" xml:space="preserve">
+    <value>Uwaga</value>
   </data>
   <data name="wrongEmail" xml:space="preserve">
     <value>Podany adres e-mail jest błędny</value>

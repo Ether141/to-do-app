@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using ToDoAppClient.Utilities;
 
 namespace ToDoAppClient.Core.Themes
 {
@@ -19,6 +20,8 @@ namespace ToDoAppClient.Core.Themes
             Uri themeSource = new (GetThemeSource(theme), UriKind.Relative);
             Parent.Resources.MergedDictionaries[ThemeDictionaryIndex].Source = themeSource;
         }
+
+        public static Themes GetSystemTheme() => SystemUtilities.IsDarkTheme() ? Themes.Dark : Themes.Light;
 
         private static string GetThemeSource(Themes theme)
         {

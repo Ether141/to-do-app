@@ -14,8 +14,9 @@ namespace ToDoAppClient
         public static StartingPage StartingPage => new StartingPage();
         public static SignInPage SignInPage => new SignInPage();
         public static SignUpPage SignUpPage => new SignUpPage();
-        public static MainPage MainPage => new MainPage();
+        public static MainPage MainPage => MainPage.Current ?? new MainPage();
         public static ToDoPage ToDoPage => new ToDoPage();
+        public static SettingsPage SettingsPage => new SettingsPage();
 
         public Page CurrentlyOpenedPage { get; private set; }
 
@@ -23,10 +24,7 @@ namespace ToDoAppClient
         public const double MaximizedBorderThickness = 8;
         public const double WindowedBorderThickness = 1;
 
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        public MainWindow() => InitializeComponent();
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {

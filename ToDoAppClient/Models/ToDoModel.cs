@@ -11,6 +11,8 @@ namespace ToDoAppClient.Models
         public List<ToDoEntry> ToDoEntries { get; set; } = new List<ToDoEntry>();
         public int DoneEntriesCount => ToDoEntries.Count(entry => entry.IsDone);
 
+        public const int MaxListNameLength = 46;
+
         public ToDoModel(int id, string name)
         {
             Name = name;
@@ -23,6 +25,8 @@ namespace ToDoAppClient.Models
         public int Id { get; private set; }
         public string Text { get; set; } = "New ToDo entry";
         public bool IsDone { get; set; } = false;
+
+        public const int MaxEntryNameLength = 110;
 
         public ToDoEntry(string text, bool isDone)
         {

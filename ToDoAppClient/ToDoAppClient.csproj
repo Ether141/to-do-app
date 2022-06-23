@@ -10,13 +10,19 @@
 
     <ItemGroup>
       <None Remove="Resources\Images\Icons\accept.png" />
+      <None Remove="Resources\Images\Icons\account-light.png" />
+      <None Remove="Resources\Images\Icons\account.png" />
       <None Remove="Resources\Images\Icons\add-light.png" />
       <None Remove="Resources\Images\Icons\add.png" />
+      <None Remove="Resources\Images\Icons\application-light.png" />
+      <None Remove="Resources\Images\Icons\application.png" />
       <None Remove="Resources\Images\Icons\back-light.png" />
       <None Remove="Resources\Images\Icons\back.png" />
       <None Remove="Resources\Images\Icons\cancel.png" />
       <None Remove="Resources\Images\Icons\close-light.png" />
       <None Remove="Resources\Images\Icons\close.png" />
+      <None Remove="Resources\Images\Icons\error.png" />
+      <None Remove="Resources\Images\Icons\info.png" />
       <None Remove="Resources\Images\Icons\loading-spinner.png" />
       <None Remove="Resources\Images\Icons\logout-icon-light.png" />
       <None Remove="Resources\Images\Icons\logout-icon.png" />
@@ -28,9 +34,12 @@
       <None Remove="Resources\Images\Icons\remove.png" />
       <None Remove="Resources\Images\Icons\rename-light.png" />
       <None Remove="Resources\Images\Icons\rename.png" />
+      <None Remove="Resources\Images\Icons\settings-light.png" />
+      <None Remove="Resources\Images\Icons\settings.png" />
       <None Remove="Resources\Images\Icons\todo-finished.png" />
       <None Remove="Resources\Images\Icons\todo-not-finished-light.png" />
       <None Remove="Resources\Images\Icons\todo-not-finished.png" />
+      <None Remove="Resources\Images\Icons\warning.png" />
       <None Remove="Resources\Images\Icons\windowed-light.png" />
       <None Remove="Resources\Images\Icons\windowed.png" />
       <None Remove="Resources\Images\ToDoAppLogo\favicon.ico" />
@@ -49,13 +58,19 @@
 
 	<ItemGroup>
 	  <Resource Include="Resources\Images\Icons\accept.png" />
+	  <Resource Include="Resources\Images\Icons\account-light.png" />
+	  <Resource Include="Resources\Images\Icons\account.png" />
 	  <Resource Include="Resources\Images\Icons\add-light.png" />
 	  <Resource Include="Resources\Images\Icons\add.png" />
+	  <Resource Include="Resources\Images\Icons\application-light.png" />
+	  <Resource Include="Resources\Images\Icons\application.png" />
 	  <Resource Include="Resources\Images\Icons\back-light.png" />
 	  <Resource Include="Resources\Images\Icons\back.png" />
 	  <Resource Include="Resources\Images\Icons\cancel.png" />
 	  <Resource Include="Resources\Images\Icons\close-light.png" />
 	  <Resource Include="Resources\Images\Icons\close.png" />
+	  <Resource Include="Resources\Images\Icons\error.png" />
+	  <Resource Include="Resources\Images\Icons\info.png" />
 	  <Resource Include="Resources\Images\Icons\loading-spinner.png" />
 	  <Resource Include="Resources\Images\Icons\logout-icon-light.png" />
 	  <Resource Include="Resources\Images\Icons\logout-icon.png" />
@@ -67,9 +82,12 @@
 	  <Resource Include="Resources\Images\Icons\remove.png" />
 	  <Resource Include="Resources\Images\Icons\rename-light.png" />
 	  <Resource Include="Resources\Images\Icons\rename.png" />
+	  <Resource Include="Resources\Images\Icons\settings-light.png" />
+	  <Resource Include="Resources\Images\Icons\settings.png" />
 	  <Resource Include="Resources\Images\Icons\todo-finished.png" />
 	  <Resource Include="Resources\Images\Icons\todo-not-finished-light.png" />
 	  <Resource Include="Resources\Images\Icons\todo-not-finished.png" />
+	  <Resource Include="Resources\Images\Icons\warning.png" />
 	  <Resource Include="Resources\Images\Icons\windowed-light.png" />
 	  <Resource Include="Resources\Images\Icons\windowed.png" />
 	  <Resource Include="Resources\Images\ToDoAppLogo\favicon.ico" />

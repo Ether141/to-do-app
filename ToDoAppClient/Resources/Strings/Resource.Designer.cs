@@ -61,6 +61,15 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu User account.
+        /// </summary>
+        public static string account {
+            get {
+                return ResourceManager.GetString("account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Add new ToDo list.
         /// </summary>
         public static string addNewList {
@@ -75,6 +84,24 @@ namespace ToDoAppClient.Resources.Strings {
         public static string addTask {
             get {
                 return ResourceManager.GetString("addTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Application appearance.
+        /// </summary>
+        public static string appearance {
+            get {
+                return ResourceManager.GetString("appearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Application.
+        /// </summary>
+        public static string application {
+            get {
+                return ResourceManager.GetString("application", resourceCulture);
             }
         }
         
@@ -97,6 +124,15 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Cancel.
+        /// </summary>
+        public static string cancel {
+            get {
+                return ResourceManager.GetString("cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Confirm password.
         /// </summary>
         public static string confirmPassword {
@@ -115,11 +151,38 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Dark.
+        /// </summary>
+        public static string dark {
+            get {
+                return ResourceManager.GetString("dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Edit.
+        /// </summary>
+        public static string edit {
+            get {
+                return ResourceManager.GetString("edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu E-maill address.
         /// </summary>
         public static string email {
             get {
                 return ResourceManager.GetString("email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Angielski.
+        /// </summary>
+        public static string english {
+            get {
+                return ResourceManager.GetString("english", resourceCulture);
             }
         }
         
@@ -196,6 +259,15 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Language.
+        /// </summary>
+        public static string language {
+            get {
+                return ResourceManager.GetString("language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Last name.
         /// </summary>
         public static string lastName {
@@ -219,6 +291,15 @@ namespace ToDoAppClient.Resources.Strings {
         public static string lastNameIsTooShort {
             get {
                 return ResourceManager.GetString("lastNameIsTooShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Jasny.
+        /// </summary>
+        public static string light {
+            get {
+                return ResourceManager.GetString("light", resourceCulture);
             }
         }
         
@@ -282,6 +363,15 @@ namespace ToDoAppClient.Resources.Strings {
         public static string newName {
             get {
                 return ResourceManager.GetString("newName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Ok.
+        /// </summary>
+        public static string ok {
+            get {
+                return ResourceManager.GetString("ok", resourceCulture);
             }
         }
         
@@ -358,6 +448,24 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Polski.
+        /// </summary>
+        public static string polish {
+            get {
+                return ResourceManager.GetString("polish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Remove.
+        /// </summary>
+        public static string remove {
+            get {
+                return ResourceManager.GetString("remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Remove list.
         /// </summary>
         public static string removeList {
@@ -376,11 +484,56 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Settings.
+        /// </summary>
+        public static string settings {
+            get {
+                return ResourceManager.GetString("settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Sign in.
         /// </summary>
         public static string signIn {
             get {
                 return ResourceManager.GetString("signIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete this list?.
+        /// </summary>
+        public static string sureRemoveList {
+            get {
+                return ResourceManager.GetString("sureRemoveList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Application theme.
+        /// </summary>
+        public static string theme {
+            get {
+                return ResourceManager.GetString("theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Follow system.
+        /// </summary>
+        public static string themeFollowSystem {
+            get {
+                return ResourceManager.GetString("themeFollowSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Warning.
+        /// </summary>
+        public static string warning {
+            get {
+                return ResourceManager.GetString("warning", resourceCulture);
             }
         }
         
