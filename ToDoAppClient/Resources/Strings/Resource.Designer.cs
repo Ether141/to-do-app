@@ -133,6 +133,24 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Cannot run application.
+        /// </summary>
+        public static string cannotRunApp {
+            get {
+                return ResourceManager.GetString("cannotRunApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Close application.
+        /// </summary>
+        public static string closeApplication {
+            get {
+                return ResourceManager.GetString("closeApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Confirm password.
         /// </summary>
         public static string confirmPassword {
@@ -178,7 +196,7 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Angielski.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu English.
         /// </summary>
         public static string english {
             get {
@@ -187,47 +205,11 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu First name.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Error.
         /// </summary>
-        public static string firstName {
+        public static string error {
             get {
-                return ResourceManager.GetString("firstName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given first name is too long.
-        /// </summary>
-        public static string firstNameIsTooLong {
-            get {
-                return ResourceManager.GetString("firstNameIsTooLong", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given first name is too short.
-        /// </summary>
-        public static string firstNameIsTooShort {
-            get {
-                return ResourceManager.GetString("firstNameIsTooShort", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu You must enter a first name.
-        /// </summary>
-        public static string giveFirstName {
-            get {
-                return ResourceManager.GetString("giveFirstName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu You must enter a last name.
-        /// </summary>
-        public static string giveLastName {
-            get {
-                return ResourceManager.GetString("giveLastName", resourceCulture);
+                return ResourceManager.GetString("error", resourceCulture);
             }
         }
         
@@ -264,33 +246,6 @@ namespace ToDoAppClient.Resources.Strings {
         public static string language {
             get {
                 return ResourceManager.GetString("language", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Last name.
-        /// </summary>
-        public static string lastName {
-            get {
-                return ResourceManager.GetString("lastName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given last name is too long.
-        /// </summary>
-        public static string lastNameIsTooLong {
-            get {
-                return ResourceManager.GetString("lastNameIsTooLong", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given last name is too short.
-        /// </summary>
-        public static string lastNameIsTooShort {
-            get {
-                return ResourceManager.GetString("lastNameIsTooShort", resourceCulture);
             }
         }
         
@@ -448,7 +403,7 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Polski.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Polish.
         /// </summary>
         public static string polish {
             get {
@@ -480,6 +435,15 @@ namespace ToDoAppClient.Resources.Strings {
         public static string renameList {
             get {
                 return ResourceManager.GetString("renameList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu You need to restart application in order to apply all changes.
+        /// </summary>
+        public static string restartToApplyChanges {
+            get {
+                return ResourceManager.GetString("restartToApplyChanges", resourceCulture);
             }
         }
         

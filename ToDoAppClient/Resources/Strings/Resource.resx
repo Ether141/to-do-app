@@ -141,6 +141,12 @@
   <data name="cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="cannotRunApp" xml:space="preserve">
+    <value>Cannot run application</value>
+  </data>
+  <data name="closeApplication" xml:space="preserve">
+    <value>Close application</value>
+  </data>
   <data name="confirmPassword" xml:space="preserve">
     <value>Confirm password</value>
   </data>
@@ -157,22 +163,10 @@
     <value>E-maill address</value>
   </data>
   <data name="english" xml:space="preserve">
-    <value>Angielski</value>
+    <value>English</value>
   </data>
-  <data name="firstName" xml:space="preserve">
-    <value>First name</value>
-  </data>
-  <data name="firstNameIsTooLong" xml:space="preserve">
-    <value>The given first name is too long</value>
-  </data>
-  <data name="firstNameIsTooShort" xml:space="preserve">
-    <value>The given first name is too short</value>
-  </data>
-  <data name="giveFirstName" xml:space="preserve">
-    <value>You must enter a first name</value>
-  </data>
-  <data name="giveLastName" xml:space="preserve">
-    <value>You must enter a last name</value>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
   </data>
   <data name="giveLogin" xml:space="preserve">
     <value>You must enter a login</value>
@@ -185,15 +179,6 @@
   </data>
   <data name="language" xml:space="preserve">
     <value>Language</value>
-  </data>
-  <data name="lastName" xml:space="preserve">
-    <value>Last name</value>
-  </data>
-  <data name="lastNameIsTooLong" xml:space="preserve">
-    <value>The given last name is too long</value>
-  </data>
-  <data name="lastNameIsTooShort" xml:space="preserve">
-    <value>The given last name is too short</value>
   </data>
   <data name="light" xml:space="preserve">
     <value>Jasny</value>
@@ -247,7 +232,7 @@
     <value>The given passwords are not same</value>
   </data>
   <data name="polish" xml:space="preserve">
-    <value>Polski</value>
+    <value>Polish</value>
   </data>
   <data name="remove" xml:space="preserve">
     <value>Remove</value>
@@ -257,6 +242,9 @@
   </data>
   <data name="renameList" xml:space="preserve">
     <value>Rename list</value>
+  </data>
+  <data name="restartToApplyChanges" xml:space="preserve">
+    <value>You need to restart application in order to apply all changes</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Settings</value>

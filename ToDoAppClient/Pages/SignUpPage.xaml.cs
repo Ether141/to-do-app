@@ -9,15 +9,13 @@ namespace ToDoAppClient.Pages
     public partial class SignUpPage : Page
     {
         private readonly LoginRule loginRule = new LoginRule();
-        private readonly FirstNameRule firstNameRule = new FirstNameRule();
-        private readonly LastNameRule lastNameRule = new LastNameRule();
         private readonly EmailRule emailRule = new EmailRule();
         private readonly PasswordRule passwordRule = new PasswordRule();
 
-        public SignUpPage()
-        {
-            InitializeComponent();
-        }
+        private readonly SolidColorBrush errorColor = (SolidColorBrush)App.Current.Resources["errorColor"];
+        private readonly SolidColorBrush borderColor = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
+
+        public SignUpPage() => InitializeComponent();
 
         private void SignUpButtonClick(object sender, RoutedEventArgs e)
         {
@@ -32,8 +30,6 @@ namespace ToDoAppClient.Pages
         private bool ValidateForm()
         {
             ValidationResult loginValidationResult = loginRule.Validate(loginBox.Text);
-            ValidationResult firstNameValidationResult = firstNameRule.Validate(firstNameBox.Text);
-            ValidationResult lastNameValidationResult = lastNameRule.Validate(lastNameBox.Text);
             ValidationResult emailValidationResult = emailRule.Validate(emailBox.Text);
             ValidationResult passwordValidationResult = passwordRule.Validate(passwordBox.Password);
 
@@ -42,66 +38,44 @@ namespace ToDoAppClient.Pages
             if (passwordBox.Password != repeatPasswordBox.Password)
             {
                 SetErrorLabelText(Resource.passwordsAreNotSame);
-                repeatPasswordBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
+                repeatPasswordBox.BorderBrush = errorColor;
             }
             else
             {
-                repeatPasswordBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
+                repeatPasswordBox.BorderBrush = borderColor;
             }
 
             if (!passwordValidationResult.IsValid)
             {
                 SetErrorLabelText((string)passwordValidationResult.ErrorContent);
-                passwordBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
+                passwordBox.BorderBrush = errorColor;
             }
             else
             {
-                passwordBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
+                passwordBox.BorderBrush = borderColor;
             }
 
             if (!emailValidationResult.IsValid)
             {
                 SetErrorLabelText((string)emailValidationResult.ErrorContent);
-                emailBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
+                emailBox.BorderBrush = errorColor;
             }
             else
             {
-                emailBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
-            }
-
-            if (!lastNameValidationResult.IsValid)
-            {
-                SetErrorLabelText((string)lastNameValidationResult.ErrorContent);
-                lastNameBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
-            }
-            else
-            {
-                lastNameBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
-            }
-
-            if (!firstNameValidationResult.IsValid)
-            {
-                SetErrorLabelText((string)firstNameValidationResult.ErrorContent);
-                firstNameBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
-            }
-            else
-            {
-                firstNameBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
+                emailBox.BorderBrush = borderColor;
             }
 
             if (!loginValidationResult.IsValid)
             {
                 SetErrorLabelText((string)loginValidationResult.ErrorContent);
-                loginBox.BorderBrush = (SolidColorBrush)App.Current.Resources["errorColor"];
+                loginBox.BorderBrush = errorColor;
             }
             else
             {
-                loginBox.BorderBrush = (SolidColorBrush)App.Current.Resources["thirdBackgroundBrush"];
+                loginBox.BorderBrush = borderColor;
             }
 
             return loginValidationResult.IsValid
-                && firstNameValidationResult.IsValid
-                && lastNameValidationResult.IsValid
                 && emailValidationResult.IsValid
                 && passwordValidationResult.IsValid
                 && passwordBox.Password == repeatPasswordBox.Password;

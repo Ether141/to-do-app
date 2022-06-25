@@ -20,16 +20,6 @@
             </DockPanel>
 
             <DockPanel Width="340" Height="40">
-                <Label DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{x:Static str:Resource.firstName}"/>
-                <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" x:Name="firstNameBox"/>
-            </DockPanel>
-
-            <DockPanel Width="340" Height="40">
-                <Label DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{x:Static str:Resource.lastName}"/>
-                <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" x:Name="lastNameBox"/>
-            </DockPanel>
-
-            <DockPanel Width="340" Height="40">
                 <Label DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{x:Static str:Resource.email}"/>
                 <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" x:Name="emailBox"/>
             </DockPanel>

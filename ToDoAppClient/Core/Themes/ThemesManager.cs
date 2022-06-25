@@ -6,7 +6,7 @@ namespace ToDoAppClient.Core.Themes
 {
     public class ThemesManager
     {
-        public readonly Application Parent;
+        public Application Parent { get; }
 
         public const string LightThemeSource = "/Resources/Styles/LightTheme.xaml";
         public const string DarkThemeSource = "/Resources/Styles/DarkTheme.xaml";
@@ -15,20 +15,19 @@ namespace ToDoAppClient.Core.Themes
 
         public ThemesManager(Application parent) => Parent = parent;
 
-        public void ChangeTheme(Themes theme)
+        public void ChangeTheme(Theme theme)
         {
             Uri themeSource = new (GetThemeSource(theme), UriKind.Relative);
             Parent.Resources.MergedDictionaries[ThemeDictionaryIndex].Source = themeSource;
         }
 
-        public static Themes GetSystemTheme() => SystemUtilities.IsDarkTheme() ? Themes.Dark : Themes.Light;
-
-        private static string GetThemeSource(Themes theme)
+        private static string GetThemeSource(Theme theme)
         {
             return theme switch
             {
-                Themes.Dark => DarkThemeSource,
-                Themes.Light => LightThemeSource,
+                Theme.Dark => DarkThemeSource,
+                Theme.Light => LightThemeSource,
+                Theme.FollowSystem => SystemUtilities.IsDarkTheme() ? DarkThemeSource : LightThemeSource,
                 _ => DarkThemeSource
             };
         }

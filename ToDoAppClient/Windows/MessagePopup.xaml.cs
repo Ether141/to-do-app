@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -39,6 +40,7 @@ namespace ToDoAppClient.Windows
             {
                 case MessagePopupIcon.Error:
                     img = (BitmapImage)App.Current.Resources["errorIcon"];
+                    SystemSounds.Hand.Play();
                     break;
                 case MessagePopupIcon.Warning:
                     img = (BitmapImage)App.Current.Resources["warningIcon"];

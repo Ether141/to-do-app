@@ -2,6 +2,10 @@
 using ToDoAppClient.Pages;
 using System.Windows.Controls;
 using ToDoAppClient.Core.Themes;
+using System;
+using ToDoAppClient.Resources.Strings;
+using ToDoAppClient.Windows;
+using ToDoAppClient.Core.Settings;
 
 namespace ToDoAppClient
 {
@@ -24,7 +28,10 @@ namespace ToDoAppClient
         public const double MaximizedBorderThickness = 8;
         public const double WindowedBorderThickness = 1;
 
-        public MainWindow() => InitializeComponent();
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -34,8 +41,8 @@ namespace ToDoAppClient
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
-            App app = (App)Application.Current;
-            app.ThemesManager.ChangeTheme(Themes.Dark);
+            InitializeSettings();
+            //App.Instance.ThemesManager.ChangeTheme(Themes.Dark);
             OpenPage(StartingPage);
         }
 
@@ -61,6 +68,18 @@ namespace ToDoAppClient
                 Page page = (Page)pageDisplay.Content;
                 page.Width = ActualWidth - (WindowState == WindowState.Maximized ? MaximizedBorderThickness * 2 : 0);
                 page.Height = ActualHeight - CaptionSize - (WindowState == WindowState.Maximized ? MaximizedBorderThickness * 2 : 0);
+            }
+        }
+
+        private void InitializeSettings()
+        {
+            AppSettingsInitializationResult result = App.Instance.ApplicationSettings.Initialize();
+
+            if (result != AppSettingsInitializationResult.Success)
+            {
+                MessagePopup popup = new MessagePopup(Resource.error, Resource.cannotRunApp, MessagePopupIcon.Error, MessagePopupButtons.Ok);
+                popup.ShowDialog();
+                App.Instance.Shutdown(-1);
             }
         }
     }

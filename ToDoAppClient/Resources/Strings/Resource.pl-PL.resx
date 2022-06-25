@@ -141,6 +141,12 @@
   <data name="cancel" xml:space="preserve">
     <value>Anuluj</value>
   </data>
+  <data name="cannotRunApp" xml:space="preserve">
+    <value>Nie można uruchomić aplikacji</value>
+  </data>
+  <data name="closeApplication" xml:space="preserve">
+    <value>Zamknij aplikację</value>
+  </data>
   <data name="confirmPassword" xml:space="preserve">
     <value>Potwierdź hasło</value>
   </data>
@@ -159,20 +165,8 @@
   <data name="english" xml:space="preserve">
     <value>Angielski</value>
   </data>
-  <data name="firstName" xml:space="preserve">
-    <value>Imię</value>
-  </data>
-  <data name="firstNameIsTooLong" xml:space="preserve">
-    <value>Podane imię jest za długie</value>
-  </data>
-  <data name="firstNameIsTooShort" xml:space="preserve">
-    <value>Podane imię jest za krótkie</value>
-  </data>
-  <data name="giveFirstName" xml:space="preserve">
-    <value>Musisz podać imię</value>
-  </data>
-  <data name="giveLastName" xml:space="preserve">
-    <value>Musisz podać nazwisko</value>
+  <data name="error" xml:space="preserve">
+    <value>Błąd</value>
   </data>
   <data name="giveLogin" xml:space="preserve">
     <value>Musisz podać login</value>
@@ -185,15 +179,6 @@
   </data>
   <data name="language" xml:space="preserve">
     <value>Język</value>
-  </data>
-  <data name="lastName" xml:space="preserve">
-    <value>Nazwisko</value>
-  </data>
-  <data name="lastNameIsTooLong" xml:space="preserve">
-    <value>Podane nazwisko jest za długie</value>
-  </data>
-  <data name="lastNameIsTooShort" xml:space="preserve">
-    <value>Podane nazwisko jest za krótkie</value>
   </data>
   <data name="light" xml:space="preserve">
     <value>Jasny</value>
@@ -257,6 +242,9 @@
   </data>
   <data name="renameList" xml:space="preserve">
     <value>Zmień nazwę listy</value>
+  </data>
+  <data name="restartToApplyChanges" xml:space="preserve">
+    <value>Musisz zrestartować aplikację, aby w pełni zastosować wszystkie zmiany</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Ustawienia</value>
