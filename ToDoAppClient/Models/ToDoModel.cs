@@ -26,7 +26,7 @@ namespace ToDoAppClient.Models
         public string Text { get; set; } = "New ToDo entry";
         public bool IsDone { get; set; } = false;
 
-        public const int MaxEntryNameLength = 110;
+        public const int MaxEntryNameLength = 128;
 
         public ToDoEntry(string text, bool isDone)
         {

@@ -61,6 +61,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Page Include="App.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Resource Include="Resources\Images\Icons\accept.png" />
 	  <Resource Include="Resources\Images\Icons\account-light.png" />
 	  <Resource Include="Resources\Images\Icons\account.png" />

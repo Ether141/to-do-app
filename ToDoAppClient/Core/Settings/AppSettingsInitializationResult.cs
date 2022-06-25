@@ -4,6 +4,6 @@
     {
         Success,
         AlreadyInitialized,
-        CannotCreateDirOrFile
+        NotFoundDataDir
     }
 }

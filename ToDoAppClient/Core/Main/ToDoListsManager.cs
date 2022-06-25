@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ToDoAppClient.Core
+namespace ToDoAppClient.Core.Main
 {
     public class ToDoListsManager
     {

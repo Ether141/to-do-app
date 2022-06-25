@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -9,10 +8,7 @@ namespace ToDoAppClient.Core.Settings
 {
     public class ApplicationSettingsManager
     {
-        public static string LocalApplicationDir => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ToDoApp");
-        public static string SettingsFilePath => Path.Combine(LocalApplicationDir, "settings.json");
-
-        public static bool LocalApplicationDirExists => Directory.Exists(LocalApplicationDir);
+        public static string SettingsFilePath => Path.Combine(App.ApplicationLocalDir, "settings");
         public static bool SettingsFileExists => File.Exists(SettingsFilePath);
 
         public static ApplicationSettings DefaultSettings => new ApplicationSettings { Language = Language.System, Theme = Theme.FollowSystem };
@@ -28,9 +24,10 @@ namespace ToDoAppClient.Core.Settings
             if (IsInitialized)
                 return AppSettingsInitializationResult.AlreadyInitialized;
 
-            if (!CreateRequiredDirsFiles())
-                return AppSettingsInitializationResult.CannotCreateDirOrFile;
+            if (!App.ApplicationLocalDirExists)
+                return AppSettingsInitializationResult.NotFoundDataDir;
 
+            Settings = DefaultSettings;
             IsInitialized = true;
 
             LoadSettingsFromFile();
@@ -45,7 +42,6 @@ namespace ToDoAppClient.Core.Settings
             if (!SettingsFileExists || !IsInitialized)
                 return false;
 
-            Settings = DefaultSettings;
             string fileContent = File.ReadAllText(SettingsFilePath);
             ApplicationSettings? readSettings = null;
 
@@ -104,48 +100,15 @@ namespace ToDoAppClient.Core.Settings
             if (!IsInitialized)
                 return;
 
-            if (!SettingsFileExists)
-            {
-                if (!CreateRequiredDirsFiles())
-                    return;
-            }
-
             JsonSerializer serializer = new JsonSerializer();
-
             try
             {
-                using StreamWriter sw = new StreamWriter(SettingsFilePath);
+                using StreamWriter sw = new StreamWriter(SettingsFilePath, false);
                 using JsonWriter writer = new JsonTextWriter(sw);
                 serializer.Serialize(writer, Settings);
             }
             catch { }
         }
 
-        private bool CreateRequiredDirsFiles()
-        {
-            try
-            {
-                if (!LocalApplicationDirExists)
-                    Directory.CreateDirectory(LocalApplicationDir);
-            }
-            catch
-            {
-                return false;
-            }
-
-            try
-            {
-                if (!SettingsFileExists)
-                {
-                    using FileStream s = File.Open(SettingsFilePath, FileMode.Create);
-                }
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
-        }
     }
 }

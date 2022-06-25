@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using ToDoAppClient.Controls;
-using ToDoAppClient.Core;
+using ToDoAppClient.Core.Main;
 using ToDoAppClient.Models;
 using ToDoAppClient.Resources.Strings;
 using ToDoAppClient.Windows;
