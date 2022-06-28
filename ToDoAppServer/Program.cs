@@ -1,15 +1,21 @@
-var builder = WebApplication.CreateBuilder(args);
+using ToDoAppServer.Middleware;
+using ToDoAppServer.Models;
 
-// Add services to the container.
+namespace ToDoAppServer
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddControllers();
+            builder.Services.AddTransient<ApiKeyMiddleware>();
 
-builder.Services.AddControllers();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+            WebApplication? app = builder.Build();
+            app.UseAuthorization();
+            app.MapControllers();
+            app.UseMiddleware<ApiKeyMiddleware>();
+            app.Run();
+        }
+    }
+}
