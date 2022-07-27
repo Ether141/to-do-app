@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using ToDoAppServer.Core;
 using ToDoAppServer.Models;
 
 namespace ToDoAppServer.Controllers
@@ -7,40 +9,86 @@ namespace ToDoAppServer.Controllers
     [Route("[controller]")]
     public class UserController : Controller
     {
-        [HttpGet]
-        [Route("{id}")]
-        public ActionResult<string> UserName(int id)
-        {
-            string userName = "example_user_name_123";
+        private readonly AccountsManager accountsManager;
+        private readonly ILogger<UserController> logger;
 
-            if (id == 0)
-                return userName;
-            else
-                return NotFound();
-        }
-
-        [HttpGet]
-        [Route("all")]
-        public ActionResult<IEnumerable<User>> GetAllUsers()
+        public UserController(AccountsManager accountsManager, ILogger<UserController> logger)
         {
-            List<User> allUsers = new List<User>
-            {
-                new User(0, "ether141", "email@gmail.com"),
-                new User(1, "kox3", "email@gmail.com"),
-                new User(2, "eman91_", "email@gmail.com")
-            };
-            return Ok(allUsers);
+            this.accountsManager = accountsManager;
+            this.logger = logger;
         }
 
         [HttpPost]
-        [Route("add")]
-        public ActionResult AddUser([FromForm]User? user)
+        [Route("register")]
+        public ActionResult Register([FromForm] UserRegisterDTO user)
         {
-            if (user == null)
-                return BadRequest();
+            logger.LogInformation("Attempt to register user");
 
-            user.Id = 0;
-            return Ok();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            RegisterResult result = accountsManager.Register(user, out int newUserId);
+
+            if (result == RegisterResult.Success)
+            {
+                logger.LogInformation("Created new user with id: {a}", newUserId);
+                return Ok(Json(new Dictionary<string, int>() { { "id", newUserId } }));
+            }
+            else
+            {
+                logger.LogInformation("Unable to create new user: {a}", result.ToString());
+                return CreateRegisterResultObject(result);
+            }
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public ActionResult Login([FromForm] UserLoginDTO user)
+        {
+            logger.LogInformation("Attempt to login: {a}", user.Nickname);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            LoginResult result = accountsManager.Login(user, out string token);
+
+            if (result != LoginResult.Success && result != LoginResult.SuccessShouldUpdatePassword)
+            {
+                logger.LogInformation("Failed to login: {a} | {b}", user.Nickname, result);
+                return CreateLoginResultObject(result);
+            }
+
+            return Ok(new Dictionary<string, string>() 
+            {
+                { "code", ((int)result).ToString() },
+                { "message", result.ToString() },
+                { "token", token }
+            });
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("all")]
+        public IEnumerable<User> GetAllUsers() => accountsManager.AllUsers;
+
+        private BadRequestObjectResult CreateRegisterResultObject(RegisterResult result)
+        {
+            Dictionary<string, string> errors = new Dictionary<string, string>()
+            {
+                { "code", ((int)result).ToString() },
+                { "message", result.ToString() }
+            };
+            return BadRequest(Json(errors));
+        }
+
+        private BadRequestObjectResult CreateLoginResultObject(LoginResult result)
+        {
+            Dictionary<string, string> errors = new Dictionary<string, string>()
+            {
+                { "code", ((int)result).ToString() },
+                { "message", result.ToString() }
+            };
+            return BadRequest(Json(errors));
         }
     }
 }
