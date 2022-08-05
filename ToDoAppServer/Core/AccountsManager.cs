@@ -59,11 +59,10 @@ namespace ToDoAppServer.Core
             return RegisterResult.Success;
         }
 
-        public LoginResult Login([NotNull] UserLoginDTO dto, out string token)
+        public LoginResult Login([NotNull] UserLoginDTO dto, out TokenResult token)
         {
-            token = string.Empty;
-
-            User? user = dbContext.Users.FirstOrDefault(u => u.Nickname == dto.Nickname);
+            token = new TokenResult();
+            User? user = GetUser(dto.Nickname);
 
             if (user == null)
                 return LoginResult.AccountNotFound;
@@ -72,7 +71,11 @@ namespace ToDoAppServer.Core
 
             if (result != PasswordVerificationResult.Failed)
             {
-                token = jwtManager.GenerateToken(user);
+                token = jwtManager.CreateTokenResult(user);
+
+                user.RefreshToken = token.RefreshToken;
+                user.RefreshTokenExpiryDate = DateTime.Now.AddDays(1);
+                dbContext.SaveChanges();
             }
 
             return result switch
@@ -82,6 +85,8 @@ namespace ToDoAppServer.Core
                 _ => LoginResult.WrongPassword,
             };
         }
+
+        public User? GetUser(string nickname) => dbContext.Users.FirstOrDefault(u => u.Nickname == nickname);
 
         public bool DoesEmailExists(string email) => dbContext.Users.Any(u => u.Email == email);
 

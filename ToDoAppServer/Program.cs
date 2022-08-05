@@ -1,8 +1,5 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using ToDoAppServer.Core;
 using ToDoAppServer.Data;
 using ToDoAppServer.Middleware;
@@ -42,20 +39,8 @@ namespace ToDoAppServer
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
-                byte[]? key = Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]);
-
                 options.SaveToken = true;
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ClockSkew = TimeSpan.Zero,
-                    ValidIssuer = builder.Configuration["JWT:Issuer"],
-                    ValidAudience = builder.Configuration["JWT:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(key)
-                };
+                options.TokenValidationParameters = JWTManager.CreateTokenValidationParameters(builder.Configuration);
             });
         }
     }

@@ -17,6 +17,10 @@ namespace ToDoAppServer.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        public string RefreshToken { get; set; }
+
+        public DateTime RefreshTokenExpiryDate { get; set; }
+
         public User() { }
 
         public User(int id, string nickname, string email, string password)
@@ -33,7 +37,9 @@ namespace ToDoAppServer.Models
             {
                 Nickname = dto.Nickname,
                 Email = dto.Email,
-                Password = password
+                Password = password,
+                RefreshToken = string.Empty,
+                RefreshTokenExpiryDate = DateTime.MinValue
             };
             return user;
         }
