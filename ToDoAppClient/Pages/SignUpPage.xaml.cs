@@ -1,8 +1,15 @@
-﻿using System.Windows;
-using System.Windows.Media;
+﻿using Newtonsoft.Json;
+using RestSharp;
+using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using ToDoAppClient.Core.ValidationRules;
 using ToDoAppClient.Resources.Strings;
+using ToDoAppSharedModels.Requests;
+using ToDoAppSharedModels.Results;
 
 namespace ToDoAppClient.Pages
 {
@@ -17,14 +24,85 @@ namespace ToDoAppClient.Pages
 
         public SignUpPage() => InitializeComponent();
 
-        private void SignUpButtonClick(object sender, RoutedEventArgs e)
+        private async void SignUpButtonClick(object sender, RoutedEventArgs e)
         {
             bool isValid = ValidateForm();
 
             if (isValid)
             {
-                // TODO: Sign up
+                form.Visibility = Visibility.Collapsed;
+                loading.Visibility = Visibility.Visible;
+
+                await SendRegisterRequest();
             }
+        }
+
+        private async Task SendRegisterRequest()
+        {
+            UserRegisterDTO user = new UserRegisterDTO
+            {
+                Nickname = loginBox.Text,
+                Email = emailBox.Text,
+                Password = passwordBox.Password,
+                PasswordConfirm = repeatPasswordBox.Password
+            };
+
+            RestResponse response = await App.Instance.APIClient.PostRegisterUser(user);
+            HandleResponse(response);
+        }
+
+        private void HandleResponse(RestResponse response)
+        {
+            if (response.ResponseStatus == ResponseStatus.TimedOut)
+            {
+                Error(ResponseCodeMapper.MapResponseStatus(response.ResponseStatus));
+                return;
+            }
+
+            if (response.Content == null)
+            {
+                Error(Resource.unknownError);
+                return;
+            }
+
+            HttpStatusCode statusCode = response.StatusCode;
+            Dictionary<string, string> content = JsonConvert.DeserializeObject<Dictionary<string, string>>(response.Content)!;
+
+            if (!content.ContainsKey("Code") || !content.ContainsKey("Message"))
+            {
+                Error($"{(int)statusCode}: {statusCode}");
+                return;
+            }
+
+            RegisterResult result = (RegisterResult)int.Parse(content["Code"]);
+
+            if (statusCode == HttpStatusCode.OK && result == RegisterResult.Success)
+            {
+                Success();
+            }
+            else
+            {
+                Error(ResponseCodeMapper.MapRegisterResult(result));
+            }
+        }
+
+        private void Success()
+        {
+            loading.Visibility = Visibility.Collapsed;
+            success.Visibility = Visibility.Visible;
+        }
+
+        private void Error(string msg)
+        {
+            loading.Visibility = Visibility.Collapsed;
+            SetErrorLabelText(msg);
+            form.Visibility = Visibility.Visible;
+        }
+
+        private void OpenSignInForm(object sender, RoutedEventArgs e)
+        {
+            success.Visibility = Visibility.Collapsed;
+            MainWindow.Instance.OpenPage(MainWindow.SignInPage);
         }
 
         private bool ValidateForm()

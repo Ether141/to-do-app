@@ -2,6 +2,15 @@
 using System.Windows.Media;
 using System.Windows.Controls;
 using ToDoAppClient.Core.ValidationRules;
+using ToDoAppSharedModels.Requests;
+using System.Threading.Tasks;
+using RestSharp;
+using ToDoAppClient.Resources.Strings;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Net;
+using ToDoAppSharedModels.Results;
+using System.Diagnostics;
 
 namespace ToDoAppClient.Pages
 {
@@ -15,14 +24,82 @@ namespace ToDoAppClient.Pages
             InitializeComponent();
         }
 
-        private void SignInButtonClick(object sender, RoutedEventArgs e)
+        private async void SignInButtonClick(object sender, RoutedEventArgs e)
         {
             bool isValid = ValidateForm();
 
             if (isValid)
             {
-                MainWindow.Instance.OpenPage(MainWindow.MainPage, true);
+                form.Visibility = Visibility.Collapsed;
+                loading.Visibility = Visibility.Visible;
+                await SendLoginRequest();
             }
+        }
+
+        private async Task SendLoginRequest()
+        {
+            UserLoginDTO dto = new UserLoginDTO
+            {
+                Nickname = loginBox.Text,
+                Password = passwordBox.Password
+            };
+
+            RestResponse response = await App.Instance.APIClient.PostLoginUser(dto);
+            HandleResponse(response);
+        }
+
+        private void HandleResponse(RestResponse response)
+        {
+            if (response.ResponseStatus == ResponseStatus.TimedOut)
+            {
+                Error(ResponseCodeMapper.MapResponseStatus(response.ResponseStatus));
+                return;
+            }
+
+            if (response.Content == null)
+            {
+                Error(Resource.unknownError);
+                return;
+            }
+
+            HttpStatusCode statusCode = response.StatusCode;
+            Dictionary<string, string> content = JsonConvert.DeserializeObject<Dictionary<string, string>>(response.Content)!;
+
+            if (!content.ContainsKey("Code") || !content.ContainsKey("Message"))
+            {
+                Error($"{(int)statusCode}: {statusCode}");
+                return;
+            }
+
+            LoginResult result = (LoginResult)int.Parse(content["Code"]);
+
+            if (statusCode == HttpStatusCode.OK && (result == LoginResult.Success || result == LoginResult.SuccessShouldUpdatePassword))
+            {
+                Success(content);
+            }
+            else
+            {
+                Error(ResponseCodeMapper.MapLoginResult(result));
+            }
+        }
+
+        private void Success(Dictionary<string, string> content)
+        {
+            string token = content["Token"];
+            string refreshToken = content["RefreshToken"];
+
+            Debug.WriteLine(token);
+            Debug.WriteLine(refreshToken);
+
+            loading.Visibility = Visibility.Collapsed;
+            MainWindow.Instance.OpenPage(MainWindow.MainPage, true);
+        }
+
+        private void Error(string msg)
+        {
+            loading.Visibility = Visibility.Collapsed;
+            SetErrorLabelText(msg);
+            form.Visibility = Visibility.Visible;
         }
 
         private bool ValidateForm()

@@ -11,7 +11,7 @@
       Background="{DynamicResource backgroundBrush}">
 
     <Grid>
-        <StackPanel VerticalAlignment="Center">
+        <StackPanel x:Name="form" Visibility="Visible" VerticalAlignment="Center">
             <Image Source="/Resources/Images/ToDoAppLogo/ToDoAppLogo.png" Width="200" Height="200"/>
 
             <DockPanel Width="340" Height="40">
@@ -28,6 +28,10 @@
 
             <Button Style="{StaticResource mainButton}" Content="{x:Static str:Resource.signIn}" Margin="0 15 0 0" Click="SignInButtonClick"/>
             <Button Style="{StaticResource mainButton}" Content="{x:Static str:Resource.back}" Margin="0 5 0 0" Click="BackButtonClick"/>
+        </StackPanel>
+
+        <StackPanel x:Name="loading" Visibility="Collapsed" VerticalAlignment="Center">
+            <ProgressBar Width="50" Height="10" IsIndeterminate="True"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -16,6 +16,7 @@ namespace ToDoAppClient
         public ThemesManager ThemesManager { get; }
         public SessionManager SessionManager { get; }
         public ApplicationSettingsManager ApplicationSettings { get; }
+        public APIClient APIClient { get; }
 
         public static App Instance => (App)Current;
 
@@ -26,6 +27,9 @@ namespace ToDoAppClient
             ThemesManager = new ThemesManager(this);
             SessionManager = new SessionManager(this);
             ApplicationSettings = new ApplicationSettingsManager(this);
+            APIClient = new APIClient();
+
+            Exit += (_, _) => APIClient.Dispose();
         }
 
         private static void PrepareAppDir()

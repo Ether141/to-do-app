@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
         <UseWindowsForms>True</UseWindowsForms>
+        <UserSecretsId>9f8b4053-4aae-49fd-9208-4d0cdf35610c</UserSecretsId>
 	</PropertyGroup>
 
     <ItemGroup>
@@ -58,10 +59,17 @@
 
 	<ItemGroup>
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	  <PackageReference Include="RestSharp" Version="108.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Page Include="App.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="ToDoAppSharedModels">
+	    <HintPath>..\SharedModels\bin\Debug\net6.0\ToDoAppSharedModels.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 	<ItemGroup>

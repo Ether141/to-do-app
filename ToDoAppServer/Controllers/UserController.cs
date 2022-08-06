@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Security.Claims;
 using ToDoAppServer.Core;
 using ToDoAppServer.Models;
+using ToDoAppSharedModels.Requests;
+using ToDoAppSharedModels.Results;
 
 namespace ToDoAppServer.Controllers
 {
@@ -23,7 +26,7 @@ namespace ToDoAppServer.Controllers
 
         [HttpPost]
         [Route("register")]
-        public ActionResult Register([FromForm] UserRegisterDTO user)
+        public ActionResult Register([FromBody] UserRegisterDTO user)
         {
             logger.LogInformation("Attempt to register user");
 
@@ -35,7 +38,7 @@ namespace ToDoAppServer.Controllers
             if (result == RegisterResult.Success)
             {
                 logger.LogInformation("Created new user with id: {a}", newUserId);
-                return Ok(Json(new Dictionary<string, int>() { { "id", newUserId } }));
+                return CreateRegisterResultObject(result, newUserId);
             }
             else
             {
@@ -46,7 +49,7 @@ namespace ToDoAppServer.Controllers
 
         [HttpPost]
         [Route("login")]
-        public ActionResult Login([FromForm] UserLoginDTO dto)
+        public ActionResult Login([FromBody] UserLoginDTO dto)
         {
             logger.LogInformation("Attempt to login: {a}", dto.Nickname);
 
@@ -61,12 +64,7 @@ namespace ToDoAppServer.Controllers
                 return CreateLoginResultObject(result);
             }
 
-            return Ok(new Dictionary<string, object>() 
-            {
-                { "code", ((int)result).ToString() },
-                { "message", result.ToString() },
-                { "token", token }
-            });
+            return CreateLoginResultObject(result, token);
         }
 
         [HttpGet]
@@ -100,24 +98,41 @@ namespace ToDoAppServer.Controllers
             return Ok(newToken);
         }
 
-        private BadRequestObjectResult CreateRegisterResultObject(RegisterResult result)
+        private ActionResult CreateRegisterResultObject(RegisterResult result, int? id = null)
         {
-            Dictionary<string, string> errors = new Dictionary<string, string>()
+            Dictionary<string, string> value = new Dictionary<string, string>()
             {
-                { "code", ((int)result).ToString() },
-                { "message", result.ToString() }
+                { "Code", ((int)result).ToString() },
+                { "Message", result.ToString() }
             };
-            return BadRequest(Json(errors));
+
+            if (id != null && result == RegisterResult.Success)
+                value.Add("Id", id.ToString()!);
+
+            JsonResult response = Json(value);
+            response.StatusCode = result == RegisterResult.Success ? ((int)HttpStatusCode.OK) : ((int)HttpStatusCode.BadRequest);
+
+            return response;
         }
 
-        private BadRequestObjectResult CreateLoginResultObject(LoginResult result)
+        private ActionResult CreateLoginResultObject(LoginResult result, TokenResult? tokens = null)
         {
-            Dictionary<string, string> errors = new Dictionary<string, string>()
+            Dictionary<string, string> value = new Dictionary<string, string>()
             {
-                { "code", ((int)result).ToString() },
-                { "message", result.ToString() }
+                { "Code", ((int)result).ToString() },
+                { "Message", result.ToString() }
             };
-            return BadRequest(Json(errors));
+
+            if (tokens != null && (result == LoginResult.Success || result == LoginResult.SuccessShouldUpdatePassword))
+            {
+                value.Add("Token", tokens.Token);
+                value.Add("RefreshToken", tokens.RefreshToken);
+            }
+
+            JsonResult response = Json(value);
+            response.StatusCode = result == LoginResult.Success || result == LoginResult.SuccessShouldUpdatePassword ? ((int)HttpStatusCode.OK) : ((int)HttpStatusCode.BadRequest);
+
+            return response;
         }
     }
 }

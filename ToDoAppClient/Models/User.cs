@@ -8,7 +8,6 @@ namespace ToDoAppClient.Models
         private int id;
         private string nickname;
         private string email;
-        private string password;
 
         public int Id
         {

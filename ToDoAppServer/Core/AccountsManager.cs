@@ -4,6 +4,8 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 using ToDoAppServer.Data;
 using ToDoAppServer.Models;
+using ToDoAppSharedModels.Requests;
+using ToDoAppSharedModels.Results;
 
 namespace ToDoAppServer.Core
 {
@@ -44,7 +46,7 @@ namespace ToDoAppServer.Core
             string password = passwordHasher.HashPassword(user, dto.Password);
 
             user = User.Map(dto, password);
-            
+
             try
             {
                 dbContext.Users.Add(user);

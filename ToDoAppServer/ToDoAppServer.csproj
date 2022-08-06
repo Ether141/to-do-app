@@ -15,4 +15,10 @@
     <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="ToDoAppSharedModels">
+      <HintPath>..\SharedModels\bin\Debug\net6.0\ToDoAppSharedModels.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

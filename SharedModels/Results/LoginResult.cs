@@ -1,4 +1,4 @@
-﻿namespace ToDoAppServer.Core
+﻿namespace ToDoAppSharedModels.Results
 {
     public enum LoginResult
     {

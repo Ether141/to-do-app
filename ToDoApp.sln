@@ -4,13 +4,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoAppClient", "ToDoAppClient\ToDoAppClient.csproj", "{FF192E81-38B5-4710-9812-130781DCF906}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5C7F7372-D491-4784-AFDB-A0D308955DF9} = {5C7F7372-D491-4784-AFDB-A0D308955DF9}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoAppServer", "ToDoAppServer\ToDoAppServer.csproj", "{0674AFBB-AC86-4E22-85B4-A750084221EE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5C7F7372-D491-4784-AFDB-A0D308955DF9} = {5C7F7372-D491-4784-AFDB-A0D308955DF9}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8FB39CAC-A559-47C3-B006-C4E233AF1D98}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoAppSharedModels", "SharedModels\ToDoAppSharedModels.csproj", "{5C7F7372-D491-4784-AFDB-A0D308955DF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +34,10 @@ Global
 		{0674AFBB-AC86-4E22-85B4-A750084221EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0674AFBB-AC86-4E22-85B4-A750084221EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0674AFBB-AC86-4E22-85B4-A750084221EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C7F7372-D491-4784-AFDB-A0D308955DF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C7F7372-D491-4784-AFDB-A0D308955DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C7F7372-D491-4784-AFDB-A0D308955DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C7F7372-D491-4784-AFDB-A0D308955DF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

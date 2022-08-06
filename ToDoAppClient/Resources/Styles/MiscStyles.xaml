@@ -6,6 +6,12 @@
         <Setter Property="Foreground" Value="{DynamicResource foregroundBrush}"/>
     </Style>
 
+    <Style TargetType="{x:Type ProgressBar}">
+        <Setter Property="Foreground" Value="{DynamicResource accentColor}"/>
+        <Setter Property="Background" Value="{DynamicResource backgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource thirdBackgroundBrush}"/>
+    </Style>
+    
     <Style TargetType="{x:Type Thumb}">
     </Style>
 </ResourceDictionary>

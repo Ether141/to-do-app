@@ -70,6 +70,24 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Account with given email already exists.
+        /// </summary>
+        public static string accountWithEmailAlreadyExists {
+            get {
+                return ResourceManager.GetString("accountWithEmailAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Account with given nickname already exists.
+        /// </summary>
+        public static string accountWithNicknameAlreadyExists {
+            get {
+                return ResourceManager.GetString("accountWithNicknameAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Add new ToDo list.
         /// </summary>
         public static string addNewList {
@@ -133,6 +151,15 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Unable to connect with server.
+        /// </summary>
+        public static string cannotConnect {
+            get {
+                return ResourceManager.GetString("cannotConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Cannot run application.
         /// </summary>
         public static string cannotRunApp {
@@ -165,6 +192,15 @@ namespace ToDoAppClient.Resources.Strings {
         public static string createAccount {
             get {
                 return ResourceManager.GetString("createAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The account has been created successfully. Now you can log in..
+        /// </summary>
+        public static string createdAccount {
+            get {
+                return ResourceManager.GetString("createdAccount", resourceCulture);
             }
         }
         
@@ -250,7 +286,7 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Jasny.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Light.
         /// </summary>
         public static string light {
             get {
@@ -466,6 +502,15 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Success.
+        /// </summary>
+        public static string success {
+            get {
+                return ResourceManager.GetString("success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Are you sure you want to delete this list?.
         /// </summary>
         public static string sureRemoveList {
@@ -493,6 +538,15 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Unknown error.
+        /// </summary>
+        public static string unknownError {
+            get {
+                return ResourceManager.GetString("unknownError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Warning.
         /// </summary>
         public static string warning {
@@ -507,6 +561,24 @@ namespace ToDoAppClient.Resources.Strings {
         public static string wrongEmail {
             get {
                 return ResourceManager.GetString("wrongEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given login is wrong.
+        /// </summary>
+        public static string wrongNickname {
+            get {
+                return ResourceManager.GetString("wrongNickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The given password is wrong.
+        /// </summary>
+        public static string wrongPassword {
+            get {
+                return ResourceManager.GetString("wrongPassword", resourceCulture);
             }
         }
     }

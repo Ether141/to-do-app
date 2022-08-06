@@ -11,7 +11,7 @@
       Background="{DynamicResource backgroundBrush}">
 
     <Grid>
-        <StackPanel VerticalAlignment="Center">
+        <StackPanel x:Name="form" Visibility="Visible" VerticalAlignment="Center">
             <Label Content="{x:Static str:Resource.createAccount}" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Margin="0 0 0 45"/>
 
             <DockPanel Width="340" Height="40">
@@ -38,6 +38,16 @@
 
             <Button Style="{StaticResource mainButton}" Content="{x:Static str:Resource.createAccount}" Click="SignUpButtonClick" Margin="0 15 0 0"/>
             <Button Style="{StaticResource mainButton}" Content="{x:Static str:Resource.back}" Margin="0 5 0 0" Click="BackButtonClick"/>
+        </StackPanel>
+
+        <StackPanel x:Name="loading" Visibility="Collapsed" VerticalAlignment="Center">
+            <ProgressBar Width="50" Height="10" IsIndeterminate="True"/>
+        </StackPanel>
+
+        <StackPanel x:Name="success" Visibility="Collapsed" VerticalAlignment="Center">
+            <Image RenderOptions.BitmapScalingMode="HighQuality" Width="100" Height="100" Source="{DynamicResource acceptColor}" Margin="0 0 0 50"/>
+            <Label Content="{x:Static str:Resource.createdAccount}" HorizontalAlignment="Center"/>
+            <Button Style="{StaticResource mainButton}" Content="{x:Static str:Resource.signIn}" Margin="0 50 0 0" Click="OpenSignInForm"/>
         </StackPanel>
     </Grid>
 </Page>

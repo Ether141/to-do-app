@@ -120,6 +120,12 @@
   <data name="account" xml:space="preserve">
     <value>Konto użytkownika</value>
   </data>
+  <data name="accountWithEmailAlreadyExists" xml:space="preserve">
+    <value>Konto z podanym adresem e-mail już istnieje</value>
+  </data>
+  <data name="accountWithNicknameAlreadyExists" xml:space="preserve">
+    <value>Konto z podanym loginem już istnieje</value>
+  </data>
   <data name="addNewList" xml:space="preserve">
     <value>Dodaj nową listę ToDo</value>
   </data>
@@ -141,6 +147,9 @@
   <data name="cancel" xml:space="preserve">
     <value>Anuluj</value>
   </data>
+  <data name="cannotConnect" xml:space="preserve">
+    <value>Nie można połączyć się z serwerem</value>
+  </data>
   <data name="cannotRunApp" xml:space="preserve">
     <value>Nie można uruchomić aplikacji</value>
   </data>
@@ -152,6 +161,9 @@
   </data>
   <data name="createAccount" xml:space="preserve">
     <value>Załóż konto</value>
+  </data>
+  <data name="createdAccount" xml:space="preserve">
+    <value>Konto zostało utworzone pomyślnie. Teraz możesz się zalogować.</value>
   </data>
   <data name="dark" xml:space="preserve">
     <value>Ciemny</value>
@@ -252,6 +264,9 @@
   <data name="signIn" xml:space="preserve">
     <value>Zaloguj się</value>
   </data>
+  <data name="success" xml:space="preserve">
+    <value>Sukces</value>
+  </data>
   <data name="sureRemoveList" xml:space="preserve">
     <value>Czy na pewno chcesz usunąć tę listę?</value>
   </data>
@@ -261,10 +276,19 @@
   <data name="themeFollowSystem" xml:space="preserve">
     <value>Zgodny z systemem</value>
   </data>
+  <data name="unknownError" xml:space="preserve">
+    <value>Nieznany błąd</value>
+  </data>
   <data name="warning" xml:space="preserve">
     <value>Uwaga</value>
   </data>
   <data name="wrongEmail" xml:space="preserve">
     <value>Podany adres e-mail jest błędny</value>
+  </data>
+  <data name="wrongNickname" xml:space="preserve">
+    <value>Podany login jest niepoprawny</value>
+  </data>
+  <data name="wrongPassword" xml:space="preserve">
+    <value>Podane hasło jest niepoprawne</value>
   </data>
 </root>

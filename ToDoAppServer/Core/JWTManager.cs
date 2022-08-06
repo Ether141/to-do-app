@@ -5,8 +5,6 @@ using ToDoAppServer.Models;
 using System.Security.Claims;
 using System.Security.Cryptography;
 
-// TODO: Add JWTManager options!
-
 namespace ToDoAppServer.Core
 {
     public class JWTManager
@@ -37,7 +35,7 @@ namespace ToDoAppServer.Core
                 {
                     new Claim(ClaimTypes.Name, user.Nickname)
                 }),
-                Expires = DateTime.UtcNow.AddSeconds(30),
+                Expires = DateTime.UtcNow.AddMinutes(15),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 

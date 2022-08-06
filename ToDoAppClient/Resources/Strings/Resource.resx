@@ -120,6 +120,12 @@
   <data name="account" xml:space="preserve">
     <value>User account</value>
   </data>
+  <data name="accountWithEmailAlreadyExists" xml:space="preserve">
+    <value>Account with given email already exists</value>
+  </data>
+  <data name="accountWithNicknameAlreadyExists" xml:space="preserve">
+    <value>Account with given nickname already exists</value>
+  </data>
   <data name="addNewList" xml:space="preserve">
     <value>Add new ToDo list</value>
   </data>
@@ -141,6 +147,9 @@
   <data name="cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="cannotConnect" xml:space="preserve">
+    <value>Unable to connect with server</value>
+  </data>
   <data name="cannotRunApp" xml:space="preserve">
     <value>Cannot run application</value>
   </data>
@@ -152,6 +161,9 @@
   </data>
   <data name="createAccount" xml:space="preserve">
     <value>Create account</value>
+  </data>
+  <data name="createdAccount" xml:space="preserve">
+    <value>The account has been created successfully. Now you can log in.</value>
   </data>
   <data name="dark" xml:space="preserve">
     <value>Dark</value>
@@ -181,7 +193,7 @@
     <value>Language</value>
   </data>
   <data name="light" xml:space="preserve">
-    <value>Jasny</value>
+    <value>Light</value>
   </data>
   <data name="listName" xml:space="preserve">
     <value>List name</value>
@@ -252,6 +264,9 @@
   <data name="signIn" xml:space="preserve">
     <value>Sign in</value>
   </data>
+  <data name="success" xml:space="preserve">
+    <value>Success</value>
+  </data>
   <data name="sureRemoveList" xml:space="preserve">
     <value>Are you sure you want to delete this list?</value>
   </data>
@@ -261,10 +276,19 @@
   <data name="themeFollowSystem" xml:space="preserve">
     <value>Follow system</value>
   </data>
+  <data name="unknownError" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
   <data name="warning" xml:space="preserve">
     <value>Warning</value>
   </data>
   <data name="wrongEmail" xml:space="preserve">
     <value>The given e-mail address is wrong</value>
+  </data>
+  <data name="wrongNickname" xml:space="preserve">
+    <value>The given login is wrong</value>
+  </data>
+  <data name="wrongPassword" xml:space="preserve">
+    <value>The given password is wrong</value>
   </data>
 </root>
