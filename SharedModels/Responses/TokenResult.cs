@@ -1,4 +1,4 @@
-﻿namespace ToDoAppServer.Models
+﻿namespace ToDoAppSharedModels.Responses
 {
     public class TokenResult
     {

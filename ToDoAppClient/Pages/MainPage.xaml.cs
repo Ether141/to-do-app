@@ -19,7 +19,7 @@ namespace ToDoAppClient.Pages
         {
             Current = this;
             InitializeComponent();
-            currentUser = new User(1, "admin_1", "admin@gmail.com");
+            currentUser = App.Instance.SessionManager.CurrentUser!;
             usernameLabel.DataContext = currentUser;
             ListsManager = new ToDoListsManager();
             ListsManager.DownloadLists();
@@ -59,6 +59,7 @@ namespace ToDoAppClient.Pages
 
         private void LogOutClick(object sender, RoutedEventArgs e)
         {
+            App.Instance.SessionManager.Logout();
             MainWindow.Instance.OpenPage(MainWindow.StartingPage);
             Current = null;
         }

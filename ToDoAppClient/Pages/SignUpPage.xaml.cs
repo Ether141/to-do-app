@@ -53,15 +53,9 @@ namespace ToDoAppClient.Pages
 
         private void HandleResponse(RestResponse response)
         {
-            if (response.ResponseStatus == ResponseStatus.TimedOut)
+            if (response.ResponseStatus == ResponseStatus.TimedOut || response.Content == null)
             {
                 Error(ResponseCodeMapper.MapResponseStatus(response.ResponseStatus));
-                return;
-            }
-
-            if (response.Content == null)
-            {
-                Error(Resource.unknownError);
                 return;
             }
 

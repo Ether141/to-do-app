@@ -1,6 +1,7 @@
-﻿using System.IO;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.IO;
+using ToDoAppClient.Models;
 
 namespace ToDoAppClient.Core.Main
 {
@@ -11,9 +12,61 @@ namespace ToDoAppClient.Core.Main
 
         public App Parent { get; }
 
-        private readonly Dictionary<string, object> allCookies = new Dictionary<string, object>();
+        private string? token;
+        private string? refreshToken;
 
-        public SessionManager(App parent) => Parent = parent;
+        public string? Token
+        {
+            get => token;
+            private set
+            {
+                token = value;
+
+                if (token != null)
+                    AddOrOverwriteCookie("Token", token);
+                else if (CookieExists("Token"))
+                    RemoveCookie("Token");
+            }
+        }
+        public string? RefreshToken
+        {
+            get => refreshToken;
+            private set
+            {
+                refreshToken = value;
+
+                if (refreshToken != null)
+                    AddOrOverwriteCookie("RefreshToken", refreshToken);
+                else if (CookieExists("RefreshToken"))
+                    RemoveCookie("RefreshToken");
+            }
+        }
+        public User? CurrentUser { get; private set; }
+        public bool IsLoggedIn => CurrentUser != null;
+
+        private Dictionary<string, object> allCookies = new Dictionary<string, object>();
+
+        public SessionManager(App parent)
+        {
+            Parent = parent;
+            LoadSessionFile();
+        }
+
+        public void Login(User user, string token, string refreshToken)
+        {
+            Token = token;
+            RefreshToken = refreshToken;
+            CurrentUser = user;
+            SaveSessionFile();
+        }
+
+        public void Logout()
+        {
+            Token = null;
+            RefreshToken = null;
+            CurrentUser = null;
+            SaveSessionFile();
+        }
 
         public void AddOrOverwriteCookie(string key, object value) => allCookies[key] = value;
 
@@ -48,6 +101,21 @@ namespace ToDoAppClient.Core.Main
                 using StreamWriter sw = new StreamWriter(SessionFilePath, false);
                 using JsonWriter writer = new JsonTextWriter(sw);
                 serializer.Serialize(writer, allCookies);
+            }
+            catch { }
+        }
+
+        public void LoadSessionFile()
+        {
+            if (!SessionFileExists)
+                return;
+
+            try
+            {
+                using StreamReader file = File.OpenText(SessionFilePath);
+                JsonSerializer serializer = new JsonSerializer();
+                Dictionary<string, object> backup = new Dictionary<string, object>();
+                allCookies = (Dictionary<string, object>)serializer.Deserialize(file, typeof(Dictionary<string, object>))! ?? backup;
             }
             catch { }
         }

@@ -6,6 +6,7 @@ using ToDoAppServer.Data;
 using ToDoAppServer.Models;
 using ToDoAppSharedModels.Requests;
 using ToDoAppSharedModels.Results;
+using ToDoAppSharedModels.Responses;
 
 namespace ToDoAppServer.Core
 {
@@ -37,7 +38,7 @@ namespace ToDoAppServer.Core
         {
             newUserId = default;
 
-            RegisterResult validationResult = Validate(dto);
+            RegisterResult validationResult = ValidateRegisterRequest(dto);
 
             if (validationResult != RegisterResult.Success)
                 return validationResult;
@@ -61,9 +62,11 @@ namespace ToDoAppServer.Core
             return RegisterResult.Success;
         }
 
-        public LoginResult Login([NotNull] UserLoginDTO dto, out TokenResult token)
+        public LoginResult Login([NotNull] UserLoginDTO dto, out TokenResult? token, out User? u)
         {
-            token = new TokenResult();
+            token = null;
+            u = null;
+
             User? user = GetUser(dto.Nickname);
 
             if (user == null)
@@ -74,6 +77,7 @@ namespace ToDoAppServer.Core
             if (result != PasswordVerificationResult.Failed)
             {
                 token = jwtManager.CreateTokenResult(user);
+                u = user;
 
                 user.RefreshToken = token.RefreshToken;
                 user.RefreshTokenExpiryDate = DateTime.Now.AddDays(1);
@@ -94,7 +98,7 @@ namespace ToDoAppServer.Core
 
         public bool DoesNicknameExists(string nickname) => dbContext.Users.Any(u => u.Nickname == nickname);
 
-        private RegisterResult Validate(UserRegisterDTO dto)
+        private RegisterResult ValidateRegisterRequest(UserRegisterDTO dto)
         {
             if (!MailAddress.TryCreate(dto.Email, out _))
                 return RegisterResult.WrongEmail;

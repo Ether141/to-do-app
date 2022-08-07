@@ -12,8 +12,15 @@
 
     <Grid>
         <Image Source="/Resources/Images/ToDoAppLogo/ToDoAppLogo.png" Width="200" Height="200" Margin="0 0 0 100"/>
-        <Button Style="{StaticResource mainButton}" Click="SignInButtonClick" Content="{x:Static str:Resource.signIn}" Margin="0 120 0 0"/>
-        <Button Style="{StaticResource mainButton}" Click="SignUpButtonClick" Content="{x:Static str:Resource.createAccount}" Margin="0 190 0 0"/>
-        <Button Style="{StaticResource mainButton}" Click="CloseButtonClick" Content="{x:Static str:Resource.closeApplication}" Margin="0 260 0 0"/>
+
+        <Grid x:Name="menu" Visibility="Collapsed">
+            <Button Style="{StaticResource mainButton}" Click="SignInButtonClick" Content="{x:Static str:Resource.signIn}" Margin="0 120 0 0"/>
+            <Button Style="{StaticResource mainButton}" Click="SignUpButtonClick" Content="{x:Static str:Resource.createAccount}" Margin="0 190 0 0"/>
+            <Button Style="{StaticResource mainButton}" Click="CloseButtonClick" Content="{x:Static str:Resource.closeApplication}" Margin="0 260 0 0"/>
+        </Grid>
+
+        <Grid x:Name="loading" Visibility="Visible" VerticalAlignment="Center">
+            <ProgressBar Width="50" Height="10" IsIndeterminate="True" Margin="0 120 0 0" />
+        </Grid>
     </Grid>
 </Page>

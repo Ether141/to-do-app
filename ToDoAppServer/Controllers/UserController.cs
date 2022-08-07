@@ -6,6 +6,7 @@ using ToDoAppServer.Core;
 using ToDoAppServer.Models;
 using ToDoAppSharedModels.Requests;
 using ToDoAppSharedModels.Results;
+using ToDoAppSharedModels.Responses;
 
 namespace ToDoAppServer.Controllers
 {
@@ -56,7 +57,7 @@ namespace ToDoAppServer.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            LoginResult result = accountsManager.Login(dto, out TokenResult token);
+            LoginResult result = accountsManager.Login(dto, out TokenResult? token, out User? user);
 
             if (result != LoginResult.Success && result != LoginResult.SuccessShouldUpdatePassword)
             {
@@ -64,31 +65,51 @@ namespace ToDoAppServer.Controllers
                 return CreateLoginResultObject(result);
             }
 
-            return CreateLoginResultObject(result, token);
+            return CreateLoginResultObject(result, token, user);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Authorize]
-        [Route("all")]
-        public IEnumerable<User> GetAllUsers() => accountsManager.AllUsers;
+        [Route("validateToken")]
+        public ActionResult ValidateToken()
+        {
+            string token = Request.Headers["Authorization"].ToString()[7..];
+            ClaimsPrincipal? principal = jwtManager.GetPrincipalFromToken(token, false);
+
+            if (principal == null || principal.Identity == null || principal.Identity.Name == null)
+                return BadRequest();
+
+            User user = accountsManager.GetUser(principal.Identity!.Name!)!;
+
+            Dictionary<string, string> value = new Dictionary<string, string>()
+            {
+                { "Id", user.Id.ToString() },
+                { "Nickname", user.Nickname },
+                { "Email", user.Email }
+            };
+
+            JsonResult result = Json(value);
+            result.StatusCode = (int)HttpStatusCode.OK;
+            return result;
+        }
 
         [HttpPost]
         [Route("refresh")]
-        public ActionResult RefreshToken([FromBody] TokenRefreshRequestDTO dto)
+        public ActionResult<TokenResult> RefreshToken([FromBody] TokenRefreshRequestDTO dto)
         {
             if (!ModelState.IsValid || dto.Token == null || dto.RefreshToken == null)
                 return BadRequest(ModelState);
 
-            ClaimsPrincipal principal = jwtManager.GetPrincipalFromExpiredToken(dto.Token);
+            ClaimsPrincipal? principal = jwtManager.GetPrincipalFromToken(dto.Token, true);
 
-            if (principal.Identity == null || principal.Identity.Name == null)
+            if (principal == null || principal.Identity == null || principal.Identity.Name == null)
                 return BadRequest();
 
             string nickname = principal.Identity.Name;
             User? user = accountsManager.GetUser(nickname);
 
             if (user == null || user.RefreshToken != dto.RefreshToken || user.RefreshTokenExpiryDate <= DateTime.Now)
-                return BadRequest();
+                return Unauthorized();
 
             TokenResult newToken = jwtManager.CreateTokenResult(user);
 
@@ -115,7 +136,7 @@ namespace ToDoAppServer.Controllers
             return response;
         }
 
-        private ActionResult CreateLoginResultObject(LoginResult result, TokenResult? tokens = null)
+        private ActionResult CreateLoginResultObject(LoginResult result, TokenResult? tokens = null, User? user = null)
         {
             Dictionary<string, string> value = new Dictionary<string, string>()
             {
@@ -123,10 +144,13 @@ namespace ToDoAppServer.Controllers
                 { "Message", result.ToString() }
             };
 
-            if (tokens != null && (result == LoginResult.Success || result == LoginResult.SuccessShouldUpdatePassword))
+            if (tokens != null && user != null && (result == LoginResult.Success || result == LoginResult.SuccessShouldUpdatePassword))
             {
                 value.Add("Token", tokens.Token);
                 value.Add("RefreshToken", tokens.RefreshToken);
+                value.Add("Id", user.Id.ToString());
+                value.Add("Nickname", user.Nickname);
+                value.Add("Email", user.Email);
             }
 
             JsonResult response = Json(value);

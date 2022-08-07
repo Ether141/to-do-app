@@ -30,7 +30,7 @@ namespace ToDoAppClient.Core.ValidationRules
             LoginResult.Success => Resource.success,
             LoginResult.SuccessShouldUpdatePassword => Resource.success,
             LoginResult.UnknownError => Resource.error,
-            LoginResult.AccountNotFound => Resource.wrongEmail,
+            LoginResult.AccountNotFound => Resource.wrongNickname,
             LoginResult.WrongPassword => Resource.wrongPassword,
             _ => Resource.error
         };

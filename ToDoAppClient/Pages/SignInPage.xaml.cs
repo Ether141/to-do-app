@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Net;
 using ToDoAppSharedModels.Results;
 using System.Diagnostics;
+using ToDoAppClient.Models;
 
 namespace ToDoAppClient.Pages
 {
@@ -50,15 +51,9 @@ namespace ToDoAppClient.Pages
 
         private void HandleResponse(RestResponse response)
         {
-            if (response.ResponseStatus == ResponseStatus.TimedOut)
+            if (response.ResponseStatus == ResponseStatus.TimedOut || response.Content == null)
             {
                 Error(ResponseCodeMapper.MapResponseStatus(response.ResponseStatus));
-                return;
-            }
-
-            if (response.Content == null)
-            {
-                Error(Resource.unknownError);
                 return;
             }
 
@@ -87,9 +82,9 @@ namespace ToDoAppClient.Pages
         {
             string token = content["Token"];
             string refreshToken = content["RefreshToken"];
+            User user = new User(int.Parse(content["Id"]), content["Nickname"], content["Email"]);
 
-            Debug.WriteLine(token);
-            Debug.WriteLine(refreshToken);
+            App.Instance.SessionManager.Login(user, token, refreshToken);
 
             loading.Visibility = Visibility.Collapsed;
             MainWindow.Instance.OpenPage(MainWindow.MainPage, true);

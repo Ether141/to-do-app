@@ -52,15 +52,25 @@ namespace ToDoAppServer.Core
             return Convert.ToBase64String(randomNumber);
         }
 
-        public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
+        public ClaimsPrincipal? GetPrincipalFromToken(string token, bool allowExpiration)
         {
             TokenValidationParameters tokenValidationParameters = CreateTokenValidationParameters(configuration);
-            tokenValidationParameters.ValidateLifetime = false;
+            tokenValidationParameters.ValidateLifetime = !allowExpiration;
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
-            ClaimsPrincipal? principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+            ClaimsPrincipal? principal;
+            SecurityToken securityToken;
+
+            try
+            {
+                principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out securityToken);
+            }
+            catch
+            {
+                return null;
+            }
 
             if (securityToken is not JwtSecurityToken jwtSecurityToken || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
-                throw new SecurityTokenException("Invalid token");
+                return null;
 
             return principal;
         }

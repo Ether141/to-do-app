@@ -40,6 +40,27 @@ namespace ToDoAppClient.Core.Main
             return await Client.ExecutePostAsync(request);
         }
 
+        public async Task<RestResponse> ValidateToken()
+        {
+            RestRequest request = new RestRequest("user/validateToken", Method.Post);
+            AddTokenToRequest(request, App.Instance.SessionManager.GetAndCastCookie<string>("Token"));
+            return await Client.ExecutePostAsync(request);
+        }
+        
+        private static void AddTokenToRequest(RestRequest request)
+        {
+            string? token = App.Instance.SessionManager.Token;
+
+            if (token != null)
+                request.AddHeader("Authorization", $"Bearer {token}");
+        }
+
+        private static void AddTokenToRequest(RestRequest request, string? token)
+        {
+            if (token != null)
+                request.AddHeader("Authorization", $"Bearer {token}");
+        }
+
         public void Dispose()
         {
             Client.Dispose();

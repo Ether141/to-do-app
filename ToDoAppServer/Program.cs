@@ -21,6 +21,7 @@ namespace ToDoAppServer
             {
                 configure.AddConsole();
                 configure.AddFilter(level => level >= LogLevel.Information);
+                configure.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
             });
 
             WebApplication? app = builder.Build();
