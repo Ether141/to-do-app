@@ -1,8 +1,6 @@
 ﻿using System.Windows;
 using ToDoAppClient.Pages;
 using System.Windows.Controls;
-using ToDoAppClient.Core.Themes;
-using System;
 using ToDoAppClient.Resources.Strings;
 using ToDoAppClient.Windows;
 using ToDoAppClient.Core.Settings;
@@ -42,7 +40,6 @@ namespace ToDoAppClient
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
             InitializeSettings();
-            //App.Instance.ThemesManager.ChangeTheme(Themes.Dark);
             OpenPage(StartingPage);
         }
 

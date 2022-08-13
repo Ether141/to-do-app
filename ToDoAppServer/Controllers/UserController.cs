@@ -70,8 +70,8 @@ namespace ToDoAppServer.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("validateToken")]
-        public ActionResult ValidateToken()
+        [Route("getuser")]
+        public ActionResult<UserInfoResult> GetUser()
         {
             string token = Request.Headers["Authorization"].ToString()[7..];
             ClaimsPrincipal? principal = jwtManager.GetPrincipalFromToken(token, false);
@@ -81,16 +81,14 @@ namespace ToDoAppServer.Controllers
 
             User user = accountsManager.GetUser(principal.Identity!.Name!)!;
 
-            Dictionary<string, string> value = new Dictionary<string, string>()
+            UserInfoResult userInfo = new UserInfoResult()
             {
-                { "Id", user.Id.ToString() },
-                { "Nickname", user.Nickname },
-                { "Email", user.Email }
+                Id = user.Id,
+                Nickname = user.Nickname,
+                Email = user.Email
             };
 
-            JsonResult result = Json(value);
-            result.StatusCode = (int)HttpStatusCode.OK;
-            return result;
+            return Ok(userInfo);
         }
 
         [HttpPost]
@@ -111,12 +109,10 @@ namespace ToDoAppServer.Controllers
             if (user == null || user.RefreshToken != dto.RefreshToken || user.RefreshTokenExpiryDate <= DateTime.Now)
                 return Unauthorized();
 
-            TokenResult newToken = jwtManager.CreateTokenResult(user);
+            TokenResult newTokens = jwtManager.CreateTokenResult(user);
+            accountsManager.UpdateRefreshToken(user, newTokens.RefreshToken);
 
-            user.RefreshToken = newToken.RefreshToken;
-            user.RefreshTokenExpiryDate = DateTime.Now.AddDays(1);
-
-            return Ok(newToken);
+            return Ok(newTokens);
         }
 
         private ActionResult CreateRegisterResultObject(RegisterResult result, int? id = null)

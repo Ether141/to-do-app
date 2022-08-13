@@ -5,12 +5,10 @@ using ToDoAppClient.Core.ValidationRules;
 using ToDoAppSharedModels.Requests;
 using System.Threading.Tasks;
 using RestSharp;
-using ToDoAppClient.Resources.Strings;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net;
 using ToDoAppSharedModels.Results;
-using System.Diagnostics;
 using ToDoAppClient.Models;
 
 namespace ToDoAppClient.Pages
@@ -45,7 +43,7 @@ namespace ToDoAppClient.Pages
                 Password = passwordBox.Password
             };
 
-            RestResponse response = await App.Instance.APIClient.PostLoginUser(dto);
+            RestResponse response = await App.Instance.ClientHandler.AccountRequestsProvider.PostLoginUser(dto);
             HandleResponse(response);
         }
 

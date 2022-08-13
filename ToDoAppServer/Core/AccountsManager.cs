@@ -25,6 +25,8 @@ namespace ToDoAppServer.Core
         private readonly Regex HasLowerChar = new Regex(@"[a-z]+");
         private readonly Regex HasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
 
+        private DateTime RefreshTokenExpiryDate => DateTime.Now.AddDays(1);
+
         public AccountsManager(UserDbContext dbContext, JWTManager jwtManager)
         {
             this.dbContext = dbContext;
@@ -80,7 +82,7 @@ namespace ToDoAppServer.Core
                 u = user;
 
                 user.RefreshToken = token.RefreshToken;
-                user.RefreshTokenExpiryDate = DateTime.Now.AddDays(1);
+                user.RefreshTokenExpiryDate = RefreshTokenExpiryDate;
                 dbContext.SaveChanges();
             }
 
@@ -90,6 +92,13 @@ namespace ToDoAppServer.Core
                 PasswordVerificationResult.SuccessRehashNeeded => LoginResult.SuccessShouldUpdatePassword,
                 _ => LoginResult.WrongPassword,
             };
+        }
+
+        public void UpdateRefreshToken(User user, string newRefreshToken)
+        {
+            user.RefreshToken = newRefreshToken;
+            user.RefreshTokenExpiryDate = RefreshTokenExpiryDate;
+            dbContext.SaveChanges();
         }
 
         public User? GetUser(string nickname) => dbContext.Users.FirstOrDefault(u => u.Nickname == nickname);

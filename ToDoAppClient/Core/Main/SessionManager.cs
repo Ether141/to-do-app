@@ -116,6 +116,12 @@ namespace ToDoAppClient.Core.Main
                 JsonSerializer serializer = new JsonSerializer();
                 Dictionary<string, object> backup = new Dictionary<string, object>();
                 allCookies = (Dictionary<string, object>)serializer.Deserialize(file, typeof(Dictionary<string, object>))! ?? backup;
+
+                if (CookieExists("Token"))
+                    Token = GetAndCastCookie<string>("Token");
+
+                if (CookieExists("RefreshToken"))
+                    RefreshToken = GetAndCastCookie<string>("RefreshToken");
             }
             catch { }
         }

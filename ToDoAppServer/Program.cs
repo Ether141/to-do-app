@@ -14,7 +14,12 @@ namespace ToDoAppServer
             ConfigureJWT(builder);
             builder.Services.AddControllers();
             builder.Services.AddTransient<ApiKeyMiddleware>();
-            builder.Services.AddDbContextPool<UserDbContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("ConnectionString")));
+            builder.Services.AddDbContextPool<UserDbContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("ConnectionString")), 16);
+            builder.Services.AddDbContextPool<ToDoListDbContext>(options =>
+            {
+                options.UseMySQL(builder.Configuration.GetConnectionString("ConnectionString"));
+                options.UseLazyLoadingProxies();
+            }, 16);
             builder.Services.AddSingleton<JWTManager>();
             builder.Services.AddScoped<AccountsManager>();
             builder.Services.AddLogging(configure =>

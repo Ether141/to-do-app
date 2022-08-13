@@ -1,19 +1,20 @@
 ﻿using RestSharp;
 using System;
 using System.Threading.Tasks;
-using ToDoAppSharedModels.Requests;
 
 namespace ToDoAppClient.Core.Main
 {
-    public class APIClient : IDisposable
+    public class APIClientHandler : IAPIClient, IDisposable
     {
         public RestClient Client { get; private set; }
+
+        public AccountAPIProvider AccountRequestsProvider { get; private set; }
 
         public const string ApiAddress = "http://localhost:5204";
         public const string ApiKeyHeader = "x-api-key";
         public const string ApiKey = "9SDHABN0DH902HH";
 
-        public APIClient() => ConfigureClient();
+        public APIClientHandler() => ConfigureClient();
 
         private void ConfigureClient()
         {
@@ -24,30 +25,18 @@ namespace ToDoAppClient.Core.Main
             };
             Client = new RestClient(options);
             Client.AddDefaultHeader(ApiKeyHeader, ApiKey);
+
+            AccountRequestsProvider = new AccountAPIProvider(this);
         }
 
-        public async Task<RestResponse> PostRegisterUser(UserRegisterDTO dto)
+        public async Task<bool> HasConnectionWithServer()
         {
-            RestRequest request = new RestRequest("user/register", Method.Post);
-            request.AddBody(dto);
-            return await Client.ExecutePostAsync(request);
+            RestRequest request = new RestRequest("user", Method.Get);
+            RestResponse response = await Client.ExecuteGetAsync(request);
+            return !string.IsNullOrEmpty(response.Server);
         }
 
-        public async Task<RestResponse> PostLoginUser(UserLoginDTO dto)
-        {
-            RestRequest request = new RestRequest("user/login", Method.Post);
-            request.AddBody(dto);
-            return await Client.ExecutePostAsync(request);
-        }
-
-        public async Task<RestResponse> ValidateToken()
-        {
-            RestRequest request = new RestRequest("user/validateToken", Method.Post);
-            AddTokenToRequest(request, App.Instance.SessionManager.GetAndCastCookie<string>("Token"));
-            return await Client.ExecutePostAsync(request);
-        }
-        
-        private static void AddTokenToRequest(RestRequest request)
+        public static void AddTokenToRequest(RestRequest request)
         {
             string? token = App.Instance.SessionManager.Token;
 
@@ -55,7 +44,7 @@ namespace ToDoAppClient.Core.Main
                 request.AddHeader("Authorization", $"Bearer {token}");
         }
 
-        private static void AddTokenToRequest(RestRequest request, string? token)
+        public static void AddTokenToRequest(RestRequest request, string? token)
         {
             if (token != null)
                 request.AddHeader("Authorization", $"Bearer {token}");

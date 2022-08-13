@@ -9,7 +9,6 @@
         <Setter Property="BorderBrush" Value="{DynamicResource thirdBackgroundBrush}"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontFamily" Value="{StaticResource poppins}" />
-        <Setter Property="Foreground" Value="{DynamicResource foregroundBrush}" />
 
         <Setter Property="Template">
             <Setter.Value>
@@ -27,6 +26,12 @@
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Background" Value="{DynamicResource buttonPressedBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource foregroundBrush}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource alphaForegroundBrush}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

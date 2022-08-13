@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using ToDoAppSharedModels.Responses;
 
 namespace ToDoAppClient.Models
 {
@@ -44,6 +45,13 @@ namespace ToDoAppClient.Models
             Id = id;
             Nickname = nickname;
             Email = email;
+        }
+
+        public User(UserInfoResult userInfo)
+        {
+            Id = userInfo.Id;
+            Nickname = userInfo.Nickname;
+            Email = userInfo.Email;
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string? name = default) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

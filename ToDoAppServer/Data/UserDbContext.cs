@@ -7,8 +7,6 @@ namespace ToDoAppServer.Data
     {
         public DbSet<User> Users { get; private set; }
 
-        public UserDbContext(DbContextOptions options) : base(options)
-        {
-        }
+        public UserDbContext(DbContextOptions options) : base(options) { }
     }
 }

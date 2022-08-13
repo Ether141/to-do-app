@@ -1,10 +1,7 @@
-﻿using RestSharp;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Net;
 using ToDoAppClient.Models;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+using ToDoAppSharedModels.Responses;
 
 namespace ToDoAppClient.Pages
 {
@@ -18,39 +15,72 @@ namespace ToDoAppClient.Pages
 
         private async void CheckLoginStatus()
         {
+            bool hasConnection = await App.Instance.ClientHandler.HasConnectionWithServer();
+
+            if (!hasConnection)
+            {
+                DisableMenu();
+                NormalStartingPage();
+                return;
+            }
+
             if (App.Instance.SessionManager.CookieExists("Token") && App.Instance.SessionManager.CookieExists("RefreshToken"))
             {
-                RestResponse response = await App.Instance.APIClient.ValidateToken();
+                UserInfoResult? userInfo = null;
 
-                if (response.StatusCode == HttpStatusCode.OK)
+                try
                 {
-                    Dictionary<string, string> content = JsonConvert.DeserializeObject<Dictionary<string, string>>(response.Content!)!;
-                    User user = new User(int.Parse(content["Id"]), content["Nickname"], content["Email"]);
-                    ReloginUser(user);
+                    userInfo = await App.Instance.ClientHandler.AccountRequestsProvider.GetUserInfo();
+                }
+                catch { }
+
+                if (userInfo != null)
+                {
+                    User user = new User(userInfo);
+                    ReloginUser(user, App.Instance.SessionManager.GetAndCastCookie<string>("Token")!, App.Instance.SessionManager.GetAndCastCookie<string>("RefreshToken")!);
+                    return;
                 }
                 else
                 {
-                    App.Instance.SessionManager.RemoveCookie("Token");
-                    App.Instance.SessionManager.RemoveCookie("RefreshToken");
-                    NormalStartingPage();
+                    TokenResult? tokens = null;
+
+                    try
+                    {
+                        tokens = await App.Instance.ClientHandler.AccountRequestsProvider.TryRefreshToken();
+                    }
+                    catch { }
+
+                    if (tokens != null)
+                    {
+                        userInfo = await App.Instance.ClientHandler.AccountRequestsProvider.GetUserInfo();
+                        User user = new User(userInfo!);
+                        ReloginUser(user, tokens.Token, tokens.RefreshToken);
+                        return;
+                    }
                 }
             }
-            else
-            {
-                NormalStartingPage();
-            }
+
+            NormalStartingPage();
         }
 
-        private void ReloginUser(User user)
+        private void ReloginUser(User user, string token, string refreshToken)
         {
-            string token = App.Instance.SessionManager.GetAndCastCookie<string>("Token")!;
-            string refreshToken = App.Instance.SessionManager.GetAndCastCookie<string>("RefreshToken")!;
             App.Instance.SessionManager.Login(user, token, refreshToken);
             MainWindow.Instance.OpenPage(MainWindow.MainPage);
         }
 
+        private void DisableMenu()
+        {
+            signInBtn.IsEnabled = false;
+            signUpBtn.IsEnabled = false;
+            connectionError.Visibility = Visibility.Visible;
+        }
+
         private void NormalStartingPage()
         {
+            App.Instance.SessionManager.RemoveCookie("Token");
+            App.Instance.SessionManager.RemoveCookie("RefreshToken");
+            App.Instance.SessionManager.SaveSessionFile();
             loading.Visibility = Visibility.Collapsed;
             menu.Visibility = Visibility.Visible;
         }

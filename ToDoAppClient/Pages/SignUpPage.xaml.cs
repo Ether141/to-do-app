@@ -47,7 +47,7 @@ namespace ToDoAppClient.Pages
                 PasswordConfirm = repeatPasswordBox.Password
             };
 
-            RestResponse response = await App.Instance.APIClient.PostRegisterUser(user);
+            RestResponse response = await App.Instance.ClientHandler.AccountRequestsProvider.PostRegisterUser(user);
             HandleResponse(response);
         }
 
