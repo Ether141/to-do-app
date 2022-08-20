@@ -214,6 +214,15 @@ namespace ToDoAppClient.Resources.Strings {
         }
         
         /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Downloading lists.
+        /// </summary>
+        public static string downloadingLists {
+            get {
+                return ResourceManager.GetString("downloadingLists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         /// Wyszukuje zlokalizowany ciąg podobny do ciągu Edit.
         /// </summary>
         public static string edit {
@@ -300,6 +309,24 @@ namespace ToDoAppClient.Resources.Strings {
         public static string listName {
             get {
                 return ResourceManager.GetString("listName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Lists are up to date.
+        /// </summary>
+        public static string listsAreUpToDate {
+            get {
+                return ResourceManager.GetString("listsAreUpToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu Lists not synchronized.
+        /// </summary>
+        public static string listsNotSync {
+            get {
+                return ResourceManager.GetString("listsNotSync", resourceCulture);
             }
         }
         
@@ -480,6 +507,15 @@ namespace ToDoAppClient.Resources.Strings {
         public static string restartToApplyChanges {
             get {
                 return ResourceManager.GetString("restartToApplyChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu The session has expired. Please log in again..
+        /// </summary>
+        public static string sessionExpired {
+            get {
+                return ResourceManager.GetString("sessionExpired", resourceCulture);
             }
         }
         

@@ -36,7 +36,7 @@ namespace ToDoAppServer.Core
                 {
                     new Claim(ClaimTypes.Name, user.Nickname)
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(15),
+                Expires = DateTime.UtcNow.AddMinutes(10),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
@@ -81,5 +81,15 @@ namespace ToDoAppServer.Core
             Token = GenerateToken(user),
             RefreshToken = GenerateRefreshToken()
         };
+
+        public static string GetTokenFromRequest(HttpRequest request)
+        {
+            string value = request.Headers["Authorization"].ToString();
+
+            if (string.IsNullOrEmpty(value) || value.Length < 7)
+                return string.Empty;
+
+            return request.Headers["Authorization"].ToString()[7..];
+        }
     }
 }

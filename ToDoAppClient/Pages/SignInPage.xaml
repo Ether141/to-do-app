@@ -12,7 +12,7 @@
 
     <Grid>
         <StackPanel x:Name="form" Visibility="Visible" VerticalAlignment="Center">
-            <Image Source="/Resources/Images/ToDoAppLogo/ToDoAppLogo.png" Width="200" Height="200"/>
+            <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/Resources/Images/ToDoAppLogo/ToDoAppLogo.png" Width="200" Height="200"/>
 
             <DockPanel Width="340" Height="40">
                 <Label DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{x:Static str:Resource.login}"/>
@@ -26,8 +26,8 @@
 
             <Label Name="errorLabel" Content="" Foreground="DarkRed" HorizontalAlignment="Center" Margin="0 15 0 0"/>
 
-            <Button Style="{StaticResource mainButton}" Content="{x:Static str:Resource.signIn}" Margin="0 15 0 0" Click="SignInButtonClick"/>
-            <Button Style="{StaticResource mainButton}" Content="{x:Static str:Resource.back}" Margin="0 5 0 0" Click="BackButtonClick"/>
+            <Button Style="{StaticResource mainButton}" IsDefault="True" Content="{x:Static str:Resource.signIn}" Margin="0 15 0 0" Click="SignInButtonClick"/>
+            <Button Style="{StaticResource mainButton}" IsCancel="True" Content="{x:Static str:Resource.back}" Margin="0 5 0 0" Click="BackButtonClick"/>
         </StackPanel>
 
         <StackPanel x:Name="loading" Visibility="Collapsed" VerticalAlignment="Center">

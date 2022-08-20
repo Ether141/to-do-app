@@ -1,10 +1,13 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ToDoAppClient.Controls
 {
     public partial class ToDoListEntryControl : UserControl
     {
+        public event Action<bool> IsDoneStatusChanged;
+
         public ToDoListEntryControl()
         {
             InitializeComponent();
@@ -20,6 +23,12 @@ namespace ToDoAppClient.Controls
                 renameButton.Visibility = Visibility.Hidden;
                 removeButton.Visibility = Visibility.Hidden;
             };
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            IsDoneStatusChanged?.Invoke(checkBox.IsChecked ?? false);
         }
     }
 }

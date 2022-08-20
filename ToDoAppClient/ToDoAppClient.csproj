@@ -31,6 +31,8 @@
       <None Remove="Resources\Images\Icons\maximize.png" />
       <None Remove="Resources\Images\Icons\minimize-light.png" />
       <None Remove="Resources\Images\Icons\minimize.png" />
+      <None Remove="Resources\Images\Icons\refresh-light.png" />
+      <None Remove="Resources\Images\Icons\refresh.png" />
       <None Remove="Resources\Images\Icons\remove-light.png" />
       <None Remove="Resources\Images\Icons\remove.png" />
       <None Remove="Resources\Images\Icons\rename-light.png" />
@@ -94,6 +96,8 @@
 	  <Resource Include="Resources\Images\Icons\maximize.png" />
 	  <Resource Include="Resources\Images\Icons\minimize-light.png" />
 	  <Resource Include="Resources\Images\Icons\minimize.png" />
+	  <Resource Include="Resources\Images\Icons\refresh-light.png" />
+	  <Resource Include="Resources\Images\Icons\refresh.png" />
 	  <Resource Include="Resources\Images\Icons\remove-light.png" />
 	  <Resource Include="Resources\Images\Icons\remove.png" />
 	  <Resource Include="Resources\Images\Icons\rename-light.png" />

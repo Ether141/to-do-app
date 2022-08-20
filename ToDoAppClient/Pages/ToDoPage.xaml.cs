@@ -1,19 +1,23 @@
-﻿using System.Windows;
+﻿using RestSharp;
+using System.Net;
+using System.Windows;
 using System.Windows.Controls;
 using ToDoAppClient.Controls;
-using ToDoAppClient.Models;
 using ToDoAppClient.Resources.Strings;
 using ToDoAppClient.Windows;
+using ToDoAppSharedModels.Common;
 
 namespace ToDoAppClient.Pages
 {
     public partial class ToDoPage : Page
     {
-        public ToDoModel? CurrentlyHandledList => DataContext as ToDoModel;
+        public ToDoList? CurrentlyHandledList => DataContext as ToDoList;
+        private bool changedAnyIsDoneState = false;
+        private bool[] startIsDoneStates;
 
         public ToDoPage() => InitializeComponent();
 
-        public void SetDataContext(ToDoModel dataContext)
+        public void SetDataContext(ToDoList dataContext)
         {
             DataContext = dataContext;
             ReloadToDoEntries();
@@ -26,6 +30,12 @@ namespace ToDoAppClient.Pages
 
             todoEntriesList.Children.Clear();
 
+            if (CurrentlyHandledList.ToDoEntries == null)
+                return;
+
+            startIsDoneStates = new bool[CurrentlyHandledList.ToDoEntries.Count];
+            int i = 0;
+
             foreach (ToDoEntry? todoEntry in CurrentlyHandledList.ToDoEntries)
             {
                 ToDoListEntryControl newControl = new ToDoListEntryControl
@@ -35,8 +45,10 @@ namespace ToDoAppClient.Pages
 
                 newControl.renameButton.Click += (_, _) => RenameToDoEntry(todoEntry);
                 newControl.removeButton.Click += (_, _) => RemoveToDoEntry(todoEntry);
+                newControl.IsDoneStatusChanged += _ => changedAnyIsDoneState = true;
 
                 todoEntriesList.Children.Add(newControl);
+                startIsDoneStates[i++] = todoEntry?.IsDone ?? false;
             }
         }
 
@@ -63,8 +75,37 @@ namespace ToDoAppClient.Pages
 
         private void BackToMainPage()
         {
+            if (changedAnyIsDoneState)
+                ChangeEntriesStatus();
+
             if (MainPage.Current != null)
                 MainPage.Current.Reopen();
+        }
+
+        private async void ChangeEntriesStatus()
+        {
+            if (CurrentlyHandledList == null)
+                return;
+
+            RestResponse response = await MainPage.ListsManager.ChangeToDoEntriesStates(CurrentlyHandledList.ToDoEntries);
+
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                MainPage.Current!.SessionExpiredPopup();
+            }
+            else if (response.StatusCode != HttpStatusCode.OK)
+            {
+                MainPage.Current!.EnableConnectionErrorUI(true);
+
+                int i = 0;
+
+                foreach (ToDoEntry? todoEntry in CurrentlyHandledList.ToDoEntries)
+                {
+                    if (todoEntry != null)
+                        todoEntry.IsDone = startIsDoneStates[i];
+                    i++;
+                }
+            }
         }
 
         private void RenameListButtonClick(object sender, RoutedEventArgs e)
@@ -72,15 +113,14 @@ namespace ToDoAppClient.Pages
             if (CurrentlyHandledList == null)
                 return;
 
-            TextPopup popup = new TextPopup(Resource.newName, ((ToDoModel)DataContext).Name);
-            popup.MaxLength = ToDoModel.MaxListNameLength;
+            TextPopup popup = new TextPopup(Resource.newName, ((ToDoList)DataContext).Name);
+            popup.MaxLength = ToDoList.MaxListNameLength;
             popup.OnAcceptPopup += text =>
             {
                 if (CurrentlyHandledList.Name == text)
                     return;
 
                 CurrentlyHandledList.Name = text;
-                MainPage.ListsManager.UpdateList(CurrentlyHandledList.Id, CurrentlyHandledList);
                 listNameLabel.GetBindingExpression(ContentProperty).UpdateTarget();
             };
             popup.ShowDialog();
@@ -103,7 +143,6 @@ namespace ToDoAppClient.Pages
                 if (text != toDoEntry.Text)
                 {
                     toDoEntry.Text = text;
-                    UpdateCurrentList();
                     ReloadToDoEntries();
                 }
             };
@@ -115,27 +154,31 @@ namespace ToDoAppClient.Pages
             if (CurrentlyHandledList == null)
                 return;
 
-            if (CurrentlyHandledList.ToDoEntries.RemoveAll(entry => entry.Id == toDoEntry.Id) > 0)
+            if (true)
             {
-                UpdateCurrentList();
                 ReloadToDoEntries();
             }
         }
 
-        private void AddToDoEntry(string content)
+        private async void AddToDoEntry(string content)
         {
-            if (CurrentlyHandledList == null || DataContext.GetType() != typeof(ToDoModel))
+            if (CurrentlyHandledList == null || DataContext.GetType() != typeof(ToDoList))
                 return;
 
-            CurrentlyHandledList.ToDoEntries.Add(new ToDoEntry(content, false));
-            UpdateCurrentList();
-            ReloadToDoEntries();
-        }
+            RestResponse<ToDoEntry> response = await MainPage.ListsManager.AddToDoEntry(CurrentlyHandledList.Id, content);
 
-        private void UpdateCurrentList()
-        {
-            if (CurrentlyHandledList != null)
-                MainPage.ListsManager.UpdateList(CurrentlyHandledList.Id, CurrentlyHandledList);
+            if (response.StatusCode == HttpStatusCode.OK && response.Data != null)
+            {
+                ReloadToDoEntries();
+            }
+            else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                MainPage.Current!.SessionExpiredPopup();
+            }
+            else
+            {
+                MainPage.Current!.EnableConnectionErrorUI(true);
+            }
         }
     }
 }

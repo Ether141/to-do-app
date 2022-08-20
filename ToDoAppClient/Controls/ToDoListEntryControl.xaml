@@ -18,7 +18,7 @@
         
         <Button x:Name="renameButton" Grid.Column="0" Visibility="Hidden" HorizontalAlignment="Right" Style="{StaticResource imageButton}" Height="28" Width="28" Content="{DynamicResource renameIcon}" ToolTip="{x:Static strings:Resource.edit}"/>
         <Button x:Name="removeButton" Grid.Column="1" Visibility="Hidden" HorizontalAlignment="Right" Style="{StaticResource imageButton}" Height="28" Width="28" Content="{DynamicResource removeIcon}" ToolTip="{x:Static strings:Resource.remove}"/>
-        <CheckBox Grid.Column="2" Margin="10 0 10 0" VerticalAlignment="Center" IsChecked="{Binding IsDone}"/>
+        <CheckBox Grid.Column="2" Margin="10 0 10 0" VerticalAlignment="Center" IsChecked="{Binding IsDone}" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
         <Label Grid.Column="3" VerticalAlignment="Center" Content="{Binding Text}"/>
     </Grid>
 </UserControl>

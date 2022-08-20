@@ -1,82 +1,91 @@
-﻿using ToDoAppClient.Models;
+﻿using RestSharp;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using ToDoAppSharedModels.Common;
+using ToDoAppSharedModels.Requests;
 
 namespace ToDoAppClient.Core.Main
 {
     public class ToDoListsManager
     {
-        private readonly List<ToDoModel> allLists = new List<ToDoModel>();
+        private readonly List<ToDoList> allLists = new List<ToDoList>();
 
-        public ToDoModel[] AllLists => allLists.ToArray();
+        public bool HasConnection { get; private set; } = false;
+        public ToDoList[] AllLists => allLists.ToArray();
 
-        public void DownloadLists()
+        public async Task<HttpStatusCode> DownloadLists()
         {
-            ToDoModel model = new ToDoModel(0, "Lista zakupów - 9.06.2022");
-            allLists.Add(model);
-            model.ToDoEntries.Add(new ToDoEntry("Jabłka 3x", false));
-            model.ToDoEntries.Add(new ToDoEntry("Mleko 2l", true));
-            model.ToDoEntries.Add(new ToDoEntry("Mleko 2l", false));
-            model.ToDoEntries.Add(new ToDoEntry("Chleb", true));
-            model.ToDoEntries.Add(new ToDoEntry("Cebula 1kg", true));
-            model.ToDoEntries.Add(new ToDoEntry("Papryka 3x", true));
-            model.ToDoEntries.Add(new ToDoEntry("Jabłka 3x", false));
-            model.ToDoEntries.Add(new ToDoEntry("Mleko 2l", true));
-            model.ToDoEntries.Add(new ToDoEntry("Mleko 2l", false));
-            model.ToDoEntries.Add(new ToDoEntry("Chleb", true));
-            model.ToDoEntries.Add(new ToDoEntry("Cebula 1kg", true));
-            model.ToDoEntries.Add(new ToDoEntry("Papryka 3x", true));
-            model.ToDoEntries.Add(new ToDoEntry("Jabłka 3x", false));
-            model.ToDoEntries.Add(new ToDoEntry("Mleko 2l", true));
-            model.ToDoEntries.Add(new ToDoEntry("Mleko 2l", false));
-            model.ToDoEntries.Add(new ToDoEntry("Chleb", true));
-            model.ToDoEntries.Add(new ToDoEntry("Cebula 1kg", true));
-            model.ToDoEntries.Add(new ToDoEntry("Papryka 3x", true));
-            model.ToDoEntries.Add(new ToDoEntry("1", true));
-            model.ToDoEntries.Add(new ToDoEntry("2", true));
-            model.ToDoEntries.Add(new ToDoEntry("3", true));
-            model.ToDoEntries.Add(new ToDoEntry("4", true));
+            RestResponse<IEnumerable<ToDoList>?> response = await App.Instance.ClientHandler.ToDoListsRequestsProvider.GetToDoLists();
 
-            model = new ToDoModel(1, "Zadania dla grafików");
-            allLists.Add(model);
-            model.ToDoEntries.Add(new ToDoEntry("Zrobić jakieś tam przyciski", true));
-            model.ToDoEntries.Add(new ToDoEntry("Zrobić coś tam jeszcze", false));
-            model.ToDoEntries.Add(new ToDoEntry("I dodatkowo to", true));
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                IEnumerable<ToDoList>? lists = response.Data;
+                HasConnection = true;
 
-            model = new ToDoModel(2, "Zadania dla programistów");
-            allLists.Add(model);
+                if (lists != null)
+                {
+                    allLists.Clear();
+                    allLists.AddRange(lists);
+                }
 
-            model = new ToDoModel(3, "Zadania dla sound designerów");
-            allLists.Add(model);
-
-            model = new ToDoModel(4, "Zadania dla level designerów");
-            allLists.Add(model);
-
-            model = new ToDoModel(5, "Zadania dla quest designerów");
-            allLists.Add(model);
+                return HttpStatusCode.OK;
+            }
+            else
+            {
+                return response.StatusCode;
+            }
         }
 
         public void ClearLists() => allLists.Clear();
 
-        public void AddToDoList(ToDoModel list)
+        public async Task<RestResponse<ToDoList>> AddToDoList(string name)
         {
-            if (ContainsListWithId(list.Id))
-                return;
+            RestResponse<ToDoList> response = await App.Instance.ClientHandler.ToDoListsRequestsProvider.AddList(name);
 
-            allLists.Add(list);
+            if (response.StatusCode == HttpStatusCode.OK && response.Data != null)
+            {
+                ToDoList list = response.Data;
+                allLists.Add(list);
+            }
+
+            return response;
         }
 
-        public void UpdateList(int listId, ToDoModel updatedList)
+        public async Task<RestResponse<ToDoEntry>> AddToDoEntry(int listId, string entryName)
         {
-            for (int i = 0; i < allLists.Count; i++)
+            AddListEntryDTO dto = new AddListEntryDTO
             {
-                if (allLists[i].Id == listId)
-                {
-                    allLists[i].Name = updatedList.Name;
-                    allLists[i].ToDoEntries = updatedList.ToDoEntries;
-                    break;
-                }
+                ListId = listId,
+                EntryName = entryName
+            };
+
+            RestResponse<ToDoEntry> response = await App.Instance.ClientHandler.ToDoListsRequestsProvider.AddEntry(dto);
+
+            if (response.StatusCode == HttpStatusCode.OK && response.Data != null)
+            {
+                ToDoEntry entry = response.Data;
+                allLists.First(l => l.Id == listId).ToDoEntries.Add(entry);
             }
+
+            return response;
+        }
+
+        public async Task<RestResponse> ChangeToDoEntriesStates(IEnumerable<ToDoEntry> toDoEntries)
+        {
+            Dictionary<int, bool> newStates = new Dictionary<int, bool>();
+
+            foreach (ToDoEntry entry in toDoEntries)
+                newStates.Add(entry.Id, entry.IsDone);
+
+            ChangeToDoEntryStateDTO dto = new ChangeToDoEntryStateDTO
+            {
+                EntriesIdsAndStates = newStates
+            };
+
+            RestResponse response = await App.Instance.ClientHandler.ToDoListsRequestsProvider.ChangeEntriesStates(dto);
+            return response;
         }
 
         public void RemoveList(int listId)

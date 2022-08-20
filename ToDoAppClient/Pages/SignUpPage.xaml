@@ -36,8 +36,8 @@
 
             <Label Name="errorLabel" Content="" Foreground="DarkRed" HorizontalAlignment="Center" Margin="0 15 0 0"/>
 
-            <Button Style="{StaticResource mainButton}" Content="{x:Static str:Resource.createAccount}" Click="SignUpButtonClick" Margin="0 15 0 0"/>
-            <Button Style="{StaticResource mainButton}" Content="{x:Static str:Resource.back}" Margin="0 5 0 0" Click="BackButtonClick"/>
+            <Button Style="{StaticResource mainButton}" IsDefault="True" Content="{x:Static str:Resource.createAccount}" Click="SignUpButtonClick" Margin="0 15 0 0"/>
+            <Button Style="{StaticResource mainButton}" IsCancel="True" Content="{x:Static str:Resource.back}" Margin="0 5 0 0" Click="BackButtonClick"/>
         </StackPanel>
 
         <StackPanel x:Name="loading" Visibility="Collapsed" VerticalAlignment="Center">

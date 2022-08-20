@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using ToDoAppClient.Models;
+using ToDoAppSharedModels.Common;
 
 namespace ToDoAppClient.Controls
 {
@@ -42,7 +42,7 @@ namespace ToDoAppClient.Controls
         }
 
         public bool IsFinished => GoalsCount == CurrentGoalsCount;
-        public ToDoModel ToDoContent { get; private set; }
+        public ToDoList ToDoContent { get; private set; }
 
         public event RoutedEventHandler Click
         {
@@ -71,7 +71,7 @@ namespace ToDoAppClient.Controls
             }
         }
 
-        public ToDoEntryControl(ToDoModel content)
+        public ToDoEntryControl(ToDoList content)
         {
             EntryName = content.Name;
             InitializeComponent();
@@ -85,11 +85,11 @@ namespace ToDoAppClient.Controls
             PrepareEvents();
         }
 
-        public void SetToDoContent(ToDoModel toDoModel)
+        public void SetToDoContent(ToDoList toDoModel)
         {
             ToDoContent = toDoModel;
             EntryName = toDoModel.Name;
-            GoalsCount = ToDoContent.ToDoEntries.Count;
+            GoalsCount = ToDoContent.ToDoEntries?.Count ?? 0;
             CurrentGoalsCount = ToDoContent.DoneEntriesCount;
         }
 

@@ -168,6 +168,9 @@
   <data name="dark" xml:space="preserve">
     <value>Ciemny</value>
   </data>
+  <data name="downloadingLists" xml:space="preserve">
+    <value>Pobieranie list</value>
+  </data>
   <data name="edit" xml:space="preserve">
     <value>Edytuj</value>
   </data>
@@ -197,6 +200,12 @@
   </data>
   <data name="listName" xml:space="preserve">
     <value>Nazwa listy</value>
+  </data>
+  <data name="listsAreUpToDate" xml:space="preserve">
+    <value>Listy są aktualne</value>
+  </data>
+  <data name="listsNotSync" xml:space="preserve">
+    <value>Nie zsynchronizowano list</value>
   </data>
   <data name="login" xml:space="preserve">
     <value>Login</value>
@@ -257,6 +266,9 @@
   </data>
   <data name="restartToApplyChanges" xml:space="preserve">
     <value>Musisz zrestartować aplikację, aby w pełni zastosować wszystkie zmiany</value>
+  </data>
+  <data name="sessionExpired" xml:space="preserve">
+    <value>Sesja wygasła. Proszę zaloguj się ponownie.</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Ustawienia</value>

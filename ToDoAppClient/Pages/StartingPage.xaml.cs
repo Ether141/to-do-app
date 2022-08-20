@@ -26,37 +26,13 @@ namespace ToDoAppClient.Pages
 
             if (App.Instance.SessionManager.CookieExists("Token") && App.Instance.SessionManager.CookieExists("RefreshToken"))
             {
-                UserInfoResult? userInfo = null;
-
-                try
-                {
-                    userInfo = await App.Instance.ClientHandler.AccountRequestsProvider.GetUserInfo();
-                }
-                catch { }
+                UserInfoResult? userInfo = await App.Instance.ClientHandler.AccountRequestsProvider.GetUserInfo();
 
                 if (userInfo != null)
                 {
                     User user = new User(userInfo);
                     ReloginUser(user, App.Instance.SessionManager.GetAndCastCookie<string>("Token")!, App.Instance.SessionManager.GetAndCastCookie<string>("RefreshToken")!);
                     return;
-                }
-                else
-                {
-                    TokenResult? tokens = null;
-
-                    try
-                    {
-                        tokens = await App.Instance.ClientHandler.AccountRequestsProvider.TryRefreshToken();
-                    }
-                    catch { }
-
-                    if (tokens != null)
-                    {
-                        userInfo = await App.Instance.ClientHandler.AccountRequestsProvider.GetUserInfo();
-                        User user = new User(userInfo!);
-                        ReloginUser(user, tokens.Token, tokens.RefreshToken);
-                        return;
-                    }
                 }
             }
 

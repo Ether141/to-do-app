@@ -2,10 +2,8 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:customControls="clr-namespace:ToDoAppClient.Controls"
       xmlns:str="clr-namespace:ToDoAppClient.Resources.Strings"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ToDoAppClient.Pages"
       mc:Ignorable="d" 
       Width="1920" Height="1080"
       Title="StartingPage"
@@ -29,7 +27,17 @@
 
                 <DockPanel Margin="15 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left">
                     <Button Style="{StaticResource imageButton}" Content="{DynamicResource addIcon}" Height="30" Width="30" Click="AddListClick" ToolTip="{x:Static str:Resource.addNewList}"/>
-                    <Button DockPanel.Dock="Right" Style="{StaticResource imageButton}" Content="{DynamicResource settingsIcon}" Width="30" Height="30" Margin="5 0 15 0" Click="SettingsButtonClick" ToolTip="{x:Static str:Resource.settings}"/>
+                    <Button Style="{StaticResource imageButton}" Content="{DynamicResource settingsIcon}" Width="30" Height="30" Margin="5 0 0 0" Click="SettingsButtonClick" ToolTip="{x:Static str:Resource.settings}"/>
+
+                    <StackPanel x:Name="downloadingListsUI" Visibility="Collapsed" VerticalAlignment="Center" Margin="10 0 0 0" Orientation="Horizontal">
+                        <ProgressBar Width="50" Height="10" IsIndeterminate="True"/>
+                        <Label Content="{x:Static str:Resource.downloadingLists}" Margin="10 0 0 0"/>
+                    </StackPanel>
+
+                    <StackPanel x:Name="connectionError" Visibility="Collapsed" VerticalAlignment="Center" Margin="10 0 0 0" Orientation="Horizontal">
+                        <Image Source="{DynamicResource errorIcon}" RenderOptions.BitmapScalingMode="HighQuality" Width="20" Height="20"/>
+                        <Label Content="{x:Static str:Resource.cannotConnect}" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                    </StackPanel>
                 </DockPanel>
             </DockPanel>
         </Border>

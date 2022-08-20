@@ -168,6 +168,9 @@
   <data name="dark" xml:space="preserve">
     <value>Dark</value>
   </data>
+  <data name="downloadingLists" xml:space="preserve">
+    <value>Downloading lists</value>
+  </data>
   <data name="edit" xml:space="preserve">
     <value>Edit</value>
   </data>
@@ -197,6 +200,12 @@
   </data>
   <data name="listName" xml:space="preserve">
     <value>List name</value>
+  </data>
+  <data name="listsAreUpToDate" xml:space="preserve">
+    <value>Lists are up to date</value>
+  </data>
+  <data name="listsNotSync" xml:space="preserve">
+    <value>Lists not synchronized</value>
   </data>
   <data name="login" xml:space="preserve">
     <value>Login</value>
@@ -257,6 +266,9 @@
   </data>
   <data name="restartToApplyChanges" xml:space="preserve">
     <value>You need to restart application in order to apply all changes</value>
+  </data>
+  <data name="sessionExpired" xml:space="preserve">
+    <value>The session has expired. Please log in again.</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Settings</value>

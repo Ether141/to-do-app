@@ -34,6 +34,7 @@
     <BitmapImage x:Key="settingsIcon" UriSource="/Resources/Images/Icons/settings.png"/>
     <BitmapImage x:Key="applicationIcon" UriSource="/Resources/Images/Icons/application.png"/>
     <BitmapImage x:Key="accountIcon" UriSource="/Resources/Images/Icons/account.png"/>
+    <BitmapImage x:Key="refreshIcon" UriSource="/Resources/Images/Icons/refresh.png"/>
 
     <FontFamily x:Key="poppins">/Fonts/#Poppins</FontFamily>
 

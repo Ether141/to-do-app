@@ -30,7 +30,8 @@ namespace ToDoAppClient.Core.Main
         {
             RestRequest request = new RestRequest("user/getuser", Method.Post);
             APIClientHandler.AddTokenToRequest(request, App.Instance.SessionManager.GetAndCastCookie<string>("Token"));
-            return await Client.PostAsync<UserInfoResult?>(request);
+            UserInfoResult? result = await ClientHandler.HandleTokenRefreshing(request, async request => await Client.PostAsync<UserInfoResult?>(request));
+            return result;
         }
 
         public async Task<RestResponse> ValidateToken(string token)
