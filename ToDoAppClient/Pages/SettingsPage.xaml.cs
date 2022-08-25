@@ -39,17 +39,7 @@ namespace ToDoAppClient.Pages
             }
         }
 
-        private void AccountSettingsBtnClick(object sender, RoutedEventArgs e)
-        {
-            accountSettingsView.Visibility = Visibility.Visible;
-            appSettingsView.Visibility = Visibility.Collapsed;
-        }
-
-        private void AppSettingsBtnClick(object sender, RoutedEventArgs e)
-        {
-            accountSettingsView.Visibility = Visibility.Collapsed;
-            appSettingsView.Visibility = Visibility.Visible;
-        }
+        private void AppSettingsBtnClick(object sender, RoutedEventArgs e) => appSettingsView.Visibility = Visibility.Visible;
 
         private void ApplyCurrentSettings() => App.Instance.ApplicationSettings.ChangeSettings(CurrentSettings);
     }

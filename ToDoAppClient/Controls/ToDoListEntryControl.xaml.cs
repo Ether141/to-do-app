@@ -27,6 +27,9 @@ namespace ToDoAppClient.Controls
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            if (!IsInitialized)
+                return;
+
             CheckBox checkBox = (CheckBox)sender;
             IsDoneStatusChanged?.Invoke(checkBox.IsChecked ?? false);
         }

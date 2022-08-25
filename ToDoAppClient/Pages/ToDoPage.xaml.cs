@@ -45,7 +45,11 @@ namespace ToDoAppClient.Pages
 
                 newControl.renameButton.Click += (_, _) => RenameToDoEntry(todoEntry);
                 newControl.removeButton.Click += (_, _) => RemoveToDoEntry(todoEntry);
-                newControl.IsDoneStatusChanged += _ => changedAnyIsDoneState = true;
+                newControl.IsDoneStatusChanged += _ =>
+                {
+                    System.Diagnostics.Debug.WriteLine("\nchanged\n");
+                    changedAnyIsDoneState = true;
+                };
 
                 todoEntriesList.Children.Add(newControl);
                 startIsDoneStates[i++] = todoEntry?.IsDone ?? false;
@@ -59,12 +63,20 @@ namespace ToDoAppClient.Pages
 
             MessagePopup popup = new MessagePopup(Resource.warning, Resource.sureRemoveList, MessagePopupIcon.Warning, MessagePopupButtons.OkAndCancel);
 
-            popup.OnClosePopup += result =>
+            popup.OnClosePopup += async result =>
             {
                 if (result == MessagePopupResult.Ok)
                 {
-                    MainPage.ListsManager.RemoveList(CurrentlyHandledList.Id);
-                    BackToMainPage();
+                    RestResponse response = await MainPage.ListsManager.RemoveList(CurrentlyHandledList.Id);
+
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        BackToMainPage();
+                    }
+                    else
+                    {
+                        HandlePotenialResponseErrors(response);
+                    }
                 }
             };
 
@@ -82,6 +94,12 @@ namespace ToDoAppClient.Pages
                 MainPage.Current.Reopen();
         }
 
+        private void BackToMainPageDueToError()
+        {
+            MainPage.Current!.EnableConnectionErrorUI(true);
+            BackToMainPage();
+        }
+
         private async void ChangeEntriesStatus()
         {
             if (CurrentlyHandledList == null)
@@ -89,11 +107,7 @@ namespace ToDoAppClient.Pages
 
             RestResponse response = await MainPage.ListsManager.ChangeToDoEntriesStates(CurrentlyHandledList.ToDoEntries);
 
-            if (response.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                MainPage.Current!.SessionExpiredPopup();
-            }
-            else if (response.StatusCode != HttpStatusCode.OK)
+            if (response.StatusCode != HttpStatusCode.OK)
             {
                 MainPage.Current!.EnableConnectionErrorUI(true);
 
@@ -106,6 +120,10 @@ namespace ToDoAppClient.Pages
                     i++;
                 }
             }
+            else
+            {
+                HandlePotenialResponseErrors(response);
+            }
         }
 
         private void RenameListButtonClick(object sender, RoutedEventArgs e)
@@ -115,13 +133,21 @@ namespace ToDoAppClient.Pages
 
             TextPopup popup = new TextPopup(Resource.newName, ((ToDoList)DataContext).Name);
             popup.MaxLength = ToDoList.MaxListNameLength;
-            popup.OnAcceptPopup += text =>
+            popup.OnAcceptPopup += async text =>
             {
                 if (CurrentlyHandledList.Name == text)
                     return;
 
-                CurrentlyHandledList.Name = text;
-                listNameLabel.GetBindingExpression(ContentProperty).UpdateTarget();
+                RestResponse response = await MainPage.ListsManager.RenameList(CurrentlyHandledList.Id, text);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    listNameLabel.GetBindingExpression(ContentProperty).UpdateTarget();
+                }
+                else
+                {
+                    HandlePotenialResponseErrors(response);
+                }
             };
             popup.ShowDialog();
         }
@@ -136,48 +162,64 @@ namespace ToDoAppClient.Pages
 
         private void RenameToDoEntry(ToDoEntry toDoEntry)
         {
+            if (CurrentlyHandledList == null)
+                return;
+
             TextPopup popup = new TextPopup(Resource.newName, toDoEntry.Text);
             popup.MaxLength = ToDoEntry.MaxEntryNameLength;
-            popup.OnAcceptPopup += text =>
+            popup.OnAcceptPopup += async text =>
             {
-                if (text != toDoEntry.Text)
-                {
-                    toDoEntry.Text = text;
-                    ReloadToDoEntries();
-                }
+                if (text == toDoEntry.Text)
+                    return;
+
+                RestResponse response = await MainPage.ListsManager.RenameEntry(CurrentlyHandledList.Id, toDoEntry.Id, text);
+                HandleEntriesOperationResponse(response);
             };
             popup.ShowDialog();
         }
 
-        private void RemoveToDoEntry(ToDoEntry toDoEntry)
+        private async void RemoveToDoEntry(ToDoEntry toDoEntry)
         {
             if (CurrentlyHandledList == null)
                 return;
 
-            if (true)
-            {
-                ReloadToDoEntries();
-            }
+            RestResponse response = await MainPage.ListsManager.RemoveEntry(CurrentlyHandledList.Id, toDoEntry.Id);
+            HandleEntriesOperationResponse(response);
         }
 
         private async void AddToDoEntry(string content)
         {
-            if (CurrentlyHandledList == null || DataContext.GetType() != typeof(ToDoList))
+            if (CurrentlyHandledList == null)
                 return;
 
             RestResponse<ToDoEntry> response = await MainPage.ListsManager.AddToDoEntry(CurrentlyHandledList.Id, content);
+            HandleEntriesOperationResponse(response);
+        }
 
-            if (response.StatusCode == HttpStatusCode.OK && response.Data != null)
+        private void HandleEntriesOperationResponse(RestResponse response)
+        {
+            if (response.StatusCode == HttpStatusCode.OK)
             {
                 ReloadToDoEntries();
             }
-            else if (response.StatusCode == HttpStatusCode.Unauthorized)
+            else
+            {
+                HandlePotenialResponseErrors(response);
+            }
+        }
+
+        private void HandlePotenialResponseErrors(RestResponse response)
+        {
+            if (response.StatusCode == HttpStatusCode.OK)
+                return;
+
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
             {
                 MainPage.Current!.SessionExpiredPopup();
             }
             else
             {
-                MainPage.Current!.EnableConnectionErrorUI(true);
+                BackToMainPageDueToError();
             }
         }
     }

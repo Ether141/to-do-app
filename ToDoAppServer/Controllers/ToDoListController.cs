@@ -69,6 +69,48 @@ namespace ToDoAppServer.Controllers
 
         [HttpPost]
         [Authorize]
+        [Route("remove")]
+        public ActionResult RemoveList([FromBody] RemoveListDTO dto)
+        {
+            User? user = GetUserFromToken(JWTManager.GetTokenFromRequest(Request));
+
+            if (!ModelState.IsValid || user == null)
+                return BadRequest();
+
+            ToDoList? list = dbContext.ToDoLists.FirstOrDefault(l => l.Id == dto.Id && l.UserId == user.Id);
+
+            if (list == null)
+                return BadRequest($"unable to find list with given id: {dto.Id}");
+
+            logger.LogInformation("removed list with id: {a}", dto.Id);
+            dbContext.ToDoLists.Remove(list);
+            dbContext.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("rename")]
+        public ActionResult RenameList([FromBody] RenameListDTO dto)
+        {
+            User? user = GetUserFromToken(JWTManager.GetTokenFromRequest(Request));
+
+            if (!ModelState.IsValid || user == null)
+                return BadRequest();
+
+            ToDoList? list = dbContext.ToDoLists.FirstOrDefault(l => l.Id == dto.Id && l.UserId == user.Id);
+
+            if (list == null)
+                return BadRequest($"unable to find list with given id: {dto.Id}");
+
+            logger.LogInformation("renamed list with id {a}. new name: {b}", dto.Id, dto.NewName);
+            list.Name = dto.NewName;
+            dbContext.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
         [Route("addentry")]
         public ActionResult<ToDoEntry> AddToDoEntry([FromBody] AddListEntryDTO dto)
         {
@@ -101,6 +143,49 @@ namespace ToDoAppServer.Controllers
 
         [HttpPost]
         [Authorize]
+        [Route("removeentry")]
+        public ActionResult RemoveToDoEntry([FromBody] RemoveListEntryDTO dto)
+        {
+            User? user = GetUserFromToken(JWTManager.GetTokenFromRequest(Request));
+
+            if (!ModelState.IsValid || user == null)
+                return BadRequest();
+
+            ToDoEntry? entry = dbContext.ToDoEntries.FirstOrDefault(e => e.Id == dto.Id);
+
+            if (entry == null)
+                return BadRequest("todo list entry with given id does not exist");
+
+            logger.LogInformation("removed todo entry with id: {a}", dto.Id);
+            dbContext.ToDoEntries.Remove(entry);
+            dbContext.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("renameentry")]
+        public ActionResult RenameToDoEntry([FromBody] RenameListEntryDTO dto)
+        {
+            User? user = GetUserFromToken(JWTManager.GetTokenFromRequest(Request));
+
+            if (!ModelState.IsValid || user == null)
+                return BadRequest();
+
+            ToDoEntry? entry = dbContext.ToDoEntries.FirstOrDefault(e => e.Id == dto.Id);
+
+            if (entry == null)
+                return BadRequest("todo list entry with given id does not exist");
+
+            logger.LogInformation("renamed todo list entry with id: {a}. new name: {b}", dto.Id, dto.NewName);
+
+            entry.Text = dto.NewName;
+            dbContext.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
         [Route("changeentriesstate")]
         public ActionResult ChangeToDoEntriesState([FromBody] ChangeToDoEntryStateDTO dto)
         {
@@ -117,8 +202,9 @@ namespace ToDoAppServer.Controllers
             foreach (ToDoEntry entry in todoEntries)
                 entry.IsDone = dto.EntriesIdsAndStates.GetValueOrDefault(entry.Id);
 
-            dbContext.SaveChanges();
+            logger.LogInformation("changed todo list entries states");
 
+            dbContext.SaveChanges();
             return Ok();
         }
 

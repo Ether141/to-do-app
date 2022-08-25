@@ -42,7 +42,7 @@ namespace ToDoAppClient.Core.Main
 
         public async Task<RestResponse<ToDoList>> AddToDoList(string name)
         {
-            RestResponse<ToDoList> response = await App.Instance.ClientHandler.ToDoListsRequestsProvider.AddList(name);
+            RestResponse<ToDoList> response = await App.Instance.ClientHandler.ToDoListsRequestsProvider.AddList(new AddToDoListDTO() { ListName = name });
 
             if (response.StatusCode == HttpStatusCode.OK && response.Data != null)
             {
@@ -88,11 +88,67 @@ namespace ToDoAppClient.Core.Main
             return response;
         }
 
-        public void RemoveList(int listId)
+        public async Task<RestResponse> RemoveList(int listId)
         {
-            if (!ContainsListWithId(listId))
-                return;
-            allLists.RemoveAll(x => x.Id == listId);
+            RestResponse response = await App.Instance.ClientHandler.ToDoListsRequestsProvider.RemoveList(new RemoveListDTO() { Id = listId });
+
+            if (response.StatusCode == HttpStatusCode.OK)
+                allLists.RemoveAll(l => l.Id == listId);
+
+            return response;
+        }
+
+        public async Task<RestResponse> RenameList(int listId, string newName)
+        {
+            RenameListDTO dto = new RenameListDTO()
+            {
+                Id = listId,
+                NewName = newName
+            };
+
+            RestResponse response = await App.Instance.ClientHandler.ToDoListsRequestsProvider.RenameList(dto);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                ToDoList list = allLists.First(l => l.Id == listId);
+                list.Name = newName;
+            }
+
+            return response;
+        }
+
+        public async Task<RestResponse> RemoveEntry(int listId, int entryId)
+        {
+            RestResponse response = await App.Instance.ClientHandler.ToDoListsRequestsProvider.RemoveEntry(new RemoveListEntryDTO() { Id = entryId });
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                ToDoList list = allLists.First(l => l.Id == listId);
+                ToDoEntry entry = list.ToDoEntries.First(e => e.Id == entryId);
+                list.ToDoEntries.Remove(entry);
+            }
+
+            return response;
+        }
+
+        public async Task<RestResponse> RenameEntry(int listId, int entryId, string newName)
+        {
+            RenameListEntryDTO dto = new RenameListEntryDTO()
+            { 
+                Id = entryId, 
+                NewName = newName 
+            };
+
+            RestResponse response = await App.Instance.ClientHandler.ToDoListsRequestsProvider.RenameEntry(dto);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                ToDoList list = allLists.First(l => l.Id == listId);
+                ToDoEntry entry = list.ToDoEntries.First(e => e.Id == entryId);
+                entry.Text = newName;
+            }
+
+            return response;
         }
 
         public bool ContainsListWithId(int id) => allLists.Any(list => list.Id == id);

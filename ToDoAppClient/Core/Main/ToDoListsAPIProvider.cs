@@ -21,10 +21,10 @@ namespace ToDoAppClient.Core.Main
             return result;
         }
 
-        public async Task<RestResponse<ToDoList>> AddList(string listName)
+        public async Task<RestResponse<ToDoList>> AddList(AddToDoListDTO dto)
         {
             RestRequest request = new RestRequest("todolist/add", Method.Post);
-            request.AddBody(new AddToDoListDTO { ListName = listName });
+            request.AddBody(dto);
             APIClientHandler.AddTokenToRequest(request);
             RestResponse<ToDoList> result = (await ClientHandler.HandleTokenRefreshing(request, async request => await Client.ExecutePostAsync<ToDoList>(request)))!;
             return result;
@@ -42,6 +42,42 @@ namespace ToDoAppClient.Core.Main
         public async Task<RestResponse> ChangeEntriesStates(ChangeToDoEntryStateDTO dto)
         {
             RestRequest request = new RestRequest("todolist/changeentriesstate", Method.Post);
+            request.AddBody(dto);
+            APIClientHandler.AddTokenToRequest(request);
+            RestResponse result = (await ClientHandler.HandleTokenRefreshing(request, async request => await Client.ExecutePostAsync(request)))!;
+            return result;
+        }
+
+        public async Task<RestResponse> RemoveList(RemoveListDTO dto)
+        {
+            RestRequest request = new RestRequest("todolist/remove", Method.Post);
+            request.AddBody(dto);
+            APIClientHandler.AddTokenToRequest(request);
+            RestResponse result = (await ClientHandler.HandleTokenRefreshing(request, async request => await Client.ExecutePostAsync(request)))!;
+            return result;
+        }
+
+        public async Task<RestResponse> RenameList(RenameListDTO dto)
+        {
+            RestRequest request = new RestRequest("todolist/rename", Method.Post);
+            request.AddBody(dto);
+            APIClientHandler.AddTokenToRequest(request);
+            RestResponse result = (await ClientHandler.HandleTokenRefreshing(request, async request => await Client.ExecutePostAsync(request)))!;
+            return result;
+        }
+
+        public async Task<RestResponse> RemoveEntry(RemoveListEntryDTO dto)
+        {
+            RestRequest request = new RestRequest("todolist/removeentry", Method.Post);
+            request.AddBody(dto);
+            APIClientHandler.AddTokenToRequest(request);
+            RestResponse result = (await ClientHandler.HandleTokenRefreshing(request, async request => await Client.ExecutePostAsync(request)))!;
+            return result;
+        }
+
+        public async Task<RestResponse> RenameEntry(RenameListEntryDTO dto)
+        {
+            RestRequest request = new RestRequest("todolist/renameentry", Method.Post);
             request.AddBody(dto);
             APIClientHandler.AddTokenToRequest(request);
             RestResponse result = (await ClientHandler.HandleTokenRefreshing(request, async request => await Client.ExecutePostAsync(request)))!;
